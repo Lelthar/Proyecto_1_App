@@ -10,6 +10,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -64,9 +66,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        mMap.resetMinMaxZoomPreference();
+        //mMap.resetMinMaxZoomPreference();
         //mMap.setMaxZoomPreference(6.f);
-        mMap.setMinZoomPreference(13f);
+        //mMap.setMinZoomPreference(13f);
+
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
@@ -74,9 +77,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
 
                 mMap.clear();
-                mMap.addMarker(new MarkerOptions().position(currentLocation).title("Usted está acá"));
-                //mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,15.5f));
+                mMap.addMarker(new MarkerOptions().position(currentLocation).title("Usted está acá Change"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
             }
 
             @Override
@@ -94,22 +96,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         };
+        try{
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.ACCESS_FINE_LOCATION }, 0);
+            }
+            else {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.ACCESS_FINE_LOCATION }, 0);
+                Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                mMap.clear();
+
+                LatLng location = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(location).title("Usted está acá Abajo"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15.5f));
+                //mMap.animateCamera(CameraUpdateFactory.zoomIn());
+            }
+        }catch (Exception excepcion){
+            Toast.makeText(this, "No se cargo ubicación correctamente.", Toast.LENGTH_SHORT).show();
         }
-        else {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
-            Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-            mMap.clear();
-
-            LatLng location = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(location).title("Usted está acá"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15.5f));
-            //mMap.animateCamera(CameraUpdateFactory.zoomIn());
-        }
 
 
     }
