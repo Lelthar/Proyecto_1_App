@@ -41,7 +41,7 @@
             android:text="Ingrese su comentario:" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/edtContra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView14"

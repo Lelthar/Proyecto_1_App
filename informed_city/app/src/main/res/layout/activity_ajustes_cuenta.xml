@@ -98,7 +98,7 @@
             android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/buttonAceptar"
+            android:id="@+id/btAceptar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -108,11 +108,11 @@
             android:text="Aceptar" />
 
         <Button
-            android:id="@+id/buttonGuardar"
+            android:id="@+id/btGuardar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/editTextEdad"
-            android:layout_alignTop="@+id/buttonAceptar"
+            android:layout_alignEnd="@+id/editTextSeudonimo"
+            android:layout_alignTop="@+id/btAceptar"
             android:text="Guardar" />
     </RelativeLayout>
 

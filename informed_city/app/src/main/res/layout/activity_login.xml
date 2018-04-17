@@ -21,18 +21,19 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btIniciaSesion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/button3"
+            android:layout_above="@+id/btRegis"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="35dp"
             android:background="#194A43"
+            android:onClick="inicioSesion"
             android:text="Iniciar Sesión"
             android:textColor="#FFFFFF" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btRegis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -54,7 +55,7 @@
             android:textColor="#000000" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/edtContra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/textView"
@@ -66,7 +67,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/editText"
+            android:layout_above="@+id/edtContra"
             android:layout_alignStart="@+id/textView"
             android:layout_marginBottom="14dp"
             android:text="Contraseña" />
@@ -81,11 +82,11 @@
             android:text="Email" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/edtemail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/textView2"
-            android:layout_alignStart="@+id/editText"
+            android:layout_alignStart="@+id/edtContra"
             android:layout_marginBottom="15dp"
             android:ems="10"
             android:inputType="textEmailAddress" />

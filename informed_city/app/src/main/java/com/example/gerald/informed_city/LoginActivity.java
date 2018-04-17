@@ -3,6 +3,7 @@ package com.example.gerald.informed_city;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -28,9 +29,15 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -38,6 +45,9 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+    private Button botonInicioSesion;
+    private  Button botonRegistro;
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -66,6 +76,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        botonInicioSesion = findViewById(R.id.btIniciaSesion);
+        botonRegistro = findViewById(R.id.btRegis);
+
+        botonRegistro.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,SignUp.class);
+                startActivity(intent);
+            }
+        });
         // Set up the login form.
         /*
         populateAutoComplete();
@@ -93,6 +114,81 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mProgressView = findViewById(R.id.login_progress);
         */
     }
+
+    public void inicioSesion(View view){
+
+        DownLoadTask downLoadTask = new DownLoadTask();
+        try {
+            EditText corre = findViewById(R.id.edtemail);
+            EditText contra = findViewById(R.id.edtContra);
+
+            String valorCorreo =  corre.getText().toString();
+            String valorContra = contra.getText().toString();
+
+            if(!valorContra.equals("") && !valorCorreo.equals("")){
+                valorCorreo+="@hotmail.com";
+                String result = downLoadTask.execute(valorCorreo,valorContra).get();
+                if(result.equals("Usuario Incorrecto")){
+                    Toast.makeText(this,"Usuario Incorrecto",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(this,"Usuario Correcto",Toast.LENGTH_LONG).show();
+                }
+            }else{
+                Toast.makeText(this,"Datos incompletos",Toast.LENGTH_LONG).show();
+            }
+
+            //String valorCorreo = "geraldm1998@hotmail.com";
+            //String valorContra = "gerald123";
+
+
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public class DownLoadTask extends AsyncTask<String, Void, String> {
+        protected String doInBackground(String... strings) {
+            String xmlString;
+            HttpURLConnection urlConnection = null;
+            URL url = null;
+
+            try {
+                url = new URL("https://informedcity.herokuapp.com/auth/sign_in");
+                urlConnection = (HttpURLConnection)url.openConnection();
+                urlConnection.setRequestProperty("email",strings[0]);
+                urlConnection.setRequestProperty("password",strings[1]);
+                urlConnection.setRequestProperty("Content-Type","application/json");
+                urlConnection.setRequestMethod("POST");
+                if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    StringBuilder xmlResponse = new StringBuilder();
+                    BufferedReader input = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    String strLine = null;
+                    while ((strLine = input.readLine()) != null) {
+                        xmlResponse.append(strLine);
+                    }
+                    xmlString = xmlResponse.toString();
+                    //xmlString += urlConnection.getHeaderField("access-token");
+                    input.close();
+                    return xmlString;
+
+                }else{
+                    return "Usuario Incorrecto";
+                }
+            }
+            catch (Exception e) {
+                return e.toString();
+            }
+            finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
+            }
+        }
+    }
+
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
