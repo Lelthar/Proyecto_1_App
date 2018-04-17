@@ -13,7 +13,7 @@
         tools:layout_editor_absoluteY="8dp">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btRegis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -35,10 +35,10 @@
             android:textColor="#000000" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/edtContra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/button3"
+            android:layout_above="@+id/btRegis"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="34dp"
             android:ems="10"
@@ -48,7 +48,7 @@
             android:id="@+id/editText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/editText3"
+            android:layout_alignStart="@+id/edtemail"
             android:layout_centerVertical="true"
             android:ems="10"
             android:inputType="textPassword" />
@@ -57,7 +57,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/editText"
+            android:layout_above="@+id/edtContra"
             android:layout_alignStart="@+id/textView"
             android:layout_marginBottom="14dp"
             android:text="Repetir Contraseña"
@@ -84,7 +84,7 @@
             android:textColor="#000000" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/edtemail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView3"
