@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/EvCre"
+            android:icon="@android:drawable/ic_dialog_map"
+            android:title="Mis Eventos" />
+        <item
+            android:id="@+id/EvCer"
+            android:icon="@android:drawable/ic_menu_mapmode"
+            android:title="Eventos Cercanos" />
+        <item
+            android:id="@+id/anuncios"
+            android:icon="@drawable/common_full_open_on_phone"
+            android:title="Anuncios Instituciones" />
+        <item
+            android:id="@+id/count"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="Mi Cuenta" />
+        <item
+            android:id="@+id/tools"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Herramientas" />
+    </group>
+
+    <item android:title="Comunicación">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Acerca de" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@android:drawable/ic_dialog_email"
+                android:title="Contáctenos" />
+        </menu>
+    </item>
+
+</menu>

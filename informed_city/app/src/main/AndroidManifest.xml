@@ -38,15 +38,19 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Main2Activity"></activity>
-        <activity android:name=".AcercaDe"></activity>
-        <activity android:name=".AjustesCuenta"></activity>
-        <activity android:name=".comentarEvento"></activity>
-        <activity android:name=".crearEvento"></activity>
-        <activity android:name=".eventosFuturos"></activity>
-        <activity android:name=".SignUp"></activity>
-        <activity android:name=".Photos"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".AcercaDe" />
+        <activity android:name=".AjustesCuenta" />
+        <activity android:name=".comentarEvento" />
+        <activity android:name=".crearEvento" />
+        <activity android:name=".eventosFuturos" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".Photos" />
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".Menu_Principal"
+            android:label="@string/title_activity_menu__principal"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
