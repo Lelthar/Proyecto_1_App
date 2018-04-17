@@ -3,6 +3,7 @@ package com.example.gerald.informed_city;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -78,6 +79,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         botonInicioSesion = findViewById(R.id.btIniciaSesion);
         botonRegistro = findViewById(R.id.btRegis);
+
+        botonRegistro.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,SignUp.class);
+                startActivity(intent);
+            }
+        });
         // Set up the login form.
         /*
         populateAutoComplete();
@@ -113,16 +122,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             EditText corre = findViewById(R.id.edtemail);
             EditText contra = findViewById(R.id.edtContra);
 
-            String valorCorreo =  corre.getText().toString()+"@hotmail.com";
+            String valorCorreo =  corre.getText().toString();
             String valorContra = contra.getText().toString();
+
+            if(!valorContra.equals("") && !valorCorreo.equals("")){
+                valorCorreo+="@hotmail.com";
+                String result = downLoadTask.execute(valorCorreo,valorContra).get();
+                if(result.equals("Usuario Incorrecto")){
+                    Toast.makeText(this,"Usuario Incorrecto",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(this,"Usuario Correcto",Toast.LENGTH_LONG).show();
+                }
+            }else{
+                Toast.makeText(this,"Datos incompletos",Toast.LENGTH_LONG).show();
+            }
 
             //String valorCorreo = "geraldm1998@hotmail.com";
             //String valorContra = "gerald123";
 
-            String result = downLoadTask.execute(valorCorreo,valorContra).get();
-            //textView textView = findViewById(R.id.btIniciaSesion);
-            //textView.setText(result);
-            Toast.makeText(this,"Usuario Correcto",Toast.LENGTH_LONG).show();
+
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
