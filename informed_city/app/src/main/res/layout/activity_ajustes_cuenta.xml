@@ -7,10 +7,13 @@
     tools:context="com.mailon2.proyecto1.AjustesCuenta">
 
     <RelativeLayout
-        android:layout_width="368dp"
+        android:layout_width="359dp"
         android:layout_height="495dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/textView19"
@@ -65,13 +68,13 @@
             android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textViewNombre"
-            android:layout_below="@+id/textViewNombre"
-            android:layout_marginTop="41dp"
-            android:text="Contraseña:" />
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/textView20"
+            android:layout_marginTop="184dp"
+            android:text="Correo:" />
 
         <EditText
-            android:id="@+id/editTextContraseña"
+            android:id="@+id/editTextContra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView22"
@@ -79,41 +82,36 @@
             android:ems="10"
             android:inputType="textPersonName" />
 
-        <TextView
-            android:id="@+id/textViewEdad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/editTextEdad"
-            android:layout_alignBottom="@+id/editTextEdad"
-            android:layout_alignStart="@+id/textView22"
-            android:text="Edad:" />
+        <ImageView
+            android:id="@+id/imgVFotoP"
+            android:layout_width="174dp"
+            android:layout_height="183dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="94dp"
+            android:layout_marginStart="15dp"
+            android:src="@android:drawable/ic_menu_camera" />
 
-        <EditText
-            android:id="@+id/editTextEdad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/editTextContraseña"
-            android:layout_centerVertical="true"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/btAceptar"
+        <ImageButton
+            android:id="@+id/ibtImagen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/textViewEdad"
-            android:layout_marginBottom="80dp"
-            android:layout_marginStart="13dp"
-            android:text="Aceptar" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="169dp"
+            android:layout_marginEnd="80dp"
+            android:src="@android:drawable/ic_menu_gallery" />
 
         <Button
-            android:id="@+id/btGuardar"
-            android:layout_width="wrap_content"
+            android:id="@+id/btGuardaAjustes"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/editTextSeudonimo"
-            android:layout_alignTop="@+id/btAceptar"
-            android:text="Guardar" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:background="#194A43"
+            android:text="Guardar"
+            android:textColor="#FFFFFF"/>
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
