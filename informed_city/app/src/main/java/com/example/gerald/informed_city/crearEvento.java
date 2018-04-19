@@ -12,10 +12,4 @@ public class crearEvento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_evento);
     }
-
-    public void Cancelar(View view){
-        Intent intent = new Intent(crearEvento.this,MenuPrincipal.class);
-        startActivity(intent);
-    }
-
 }
