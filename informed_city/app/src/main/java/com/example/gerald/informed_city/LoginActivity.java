@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             String valorContra = contra.getText().toString();
 
             if(!valorContra.equals("") && !valorCorreo.equals("")){
-                valorCorreo+="@hotmail.com";
+                //valorCorreo+="@hotmail.com";
                 String result = downLoadTask.execute(valorCorreo,valorContra).get();
                 if(result.equals("Usuario Incorrecto")){
                     Toast.makeText(this,"Usuario Incorrecto",Toast.LENGTH_LONG).show();
