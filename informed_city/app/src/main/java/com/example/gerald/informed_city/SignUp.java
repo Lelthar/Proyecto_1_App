@@ -44,7 +44,12 @@ public class SignUp extends AppCompatActivity {
                 jsonParam.put("email", correoValor);
                 jsonParam.put("password", contra1Valor);
                 String  result = conexion.execute("https://informedcity.herokuapp.com/auth","POST",jsonParam.toString()).get();
-                Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
+
+                if(result.equals("OK")){
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(this,"Ya existe correo",Toast.LENGTH_SHORT).show();
+                }
             }else{
                 Toast.makeText(this,"No coincide la contraseña",Toast.LENGTH_SHORT).show();
             }

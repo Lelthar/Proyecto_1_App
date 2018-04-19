@@ -77,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
 
                 mMap.clear();
-                mMap.addMarker(new MarkerOptions().position(currentLocation).title("Usted está acá Change"));
+                mMap.addMarker(new MarkerOptions().position(currentLocation).title("Usted está acá"));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
             }
 
@@ -108,7 +108,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.clear();
 
                 LatLng location = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(location).title("Usted está acá Abajo"));
+                mMap.addMarker(new MarkerOptions().position(location).title("Usted está acá"));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15.5f));
                 //mMap.animateCamera(CameraUpdateFactory.zoomIn());
             }
