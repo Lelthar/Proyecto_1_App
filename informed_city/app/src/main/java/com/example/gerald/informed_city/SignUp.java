@@ -8,7 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
+
 public class SignUp extends AppCompatActivity {
+
+    private Conexion conexion;
 
     private  Button botonGuardar;
     @Override
@@ -19,7 +26,7 @@ public class SignUp extends AppCompatActivity {
 
 
     }
-    public  void registrarUsuario(View view){
+    public  void registrarUsuario(View view) throws JSONException, ExecutionException, InterruptedException {
         EditText correo = findViewById(R.id.edtemailSU);
         EditText contra1 = findViewById(R.id.edtContra1);
         EditText contra2 = findViewById(R.id.edtContra2);
@@ -32,7 +39,12 @@ public class SignUp extends AppCompatActivity {
                 intent.putExtra("intent",1);  //Numero del intent que lo invoca.
                 intent.putExtra("correo",correoValor);
                 intent.putExtra("contra",contra1Valor);
-                startActivity(intent);
+                conexion = new Conexion();
+                JSONObject jsonParam = new JSONObject();
+                jsonParam.put("email", correoValor);
+                jsonParam.put("password", contra1Valor);
+                String  result = conexion.execute("https://informedcity.herokuapp.com/auth","POST",jsonParam.toString()).get();
+                Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(this,"No coincide la contraseña",Toast.LENGTH_SHORT).show();
             }
