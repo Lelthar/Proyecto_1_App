@@ -133,6 +133,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }else{
                     Toast.makeText(this,"Usuario Correcto",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.this,MenuPrincipal.class);
+                    intent.putExtra("correo",valorCorreo);
                     startActivity(intent);
                 }
             }else{

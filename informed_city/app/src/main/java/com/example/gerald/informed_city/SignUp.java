@@ -48,7 +48,7 @@ public class SignUp extends AppCompatActivity {
                 if(result.equals("OK")){
                     startActivity(intent);
                 }else{
-                    Toast.makeText(this,"Ya existe correo",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
                 }
             }else{
                 Toast.makeText(this,"No coincide la contraseña",Toast.LENGTH_SHORT).show();

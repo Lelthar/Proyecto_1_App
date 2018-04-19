@@ -7,10 +7,13 @@ import android.view.View;
 
 public class MenuPrincipal extends AppCompatActivity {
 
+    private String correo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+        correo = getIntent().getExtras().getString("correo");
     }
 
 
@@ -37,6 +40,8 @@ public class MenuPrincipal extends AppCompatActivity {
 
     public void btnCuentaClick(View view) {
         Intent intent = new Intent(MenuPrincipal.this, AjustesCuenta.class);
+        intent.putExtra("intent",2);
+        intent.putExtra("correo",correo);
         startActivity(intent);
     }
 
