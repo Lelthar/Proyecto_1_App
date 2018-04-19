@@ -31,6 +31,7 @@ public class AjustesCuenta extends AppCompatActivity {
     private String correo;
     private String contrav;
     private int intentLlamada;
+    private  int id;
 
     private EditText seudo;
     private EditText correoEdt;
@@ -81,6 +82,7 @@ public class AjustesCuenta extends AppCompatActivity {
         if(intentLlamada==1){
             correo = getIntent().getExtras().getString("correo");
             contrav = getIntent().getExtras().getString("contra");
+            id = getIntent().getExtras().getInt("id");
             correoEdt.setText(correo);
             correoEdt.setEnabled(false);
         }else{
@@ -102,7 +104,7 @@ public class AjustesCuenta extends AppCompatActivity {
             jsonParam.put("nickname", seudoValor);
             jsonParam.put("email", correo);
             jsonParam.put("imagen","Path");
-            jsonParam.put("user_id",1);
+            jsonParam.put("user_id",id);
             String result="";
             try {
                 result = conexion.execute("https://informedcity.herokuapp.com/user_extendeds","POST",jsonParam.toString()).get();
@@ -138,6 +140,7 @@ public class AjustesCuenta extends AppCompatActivity {
             //if(requestCode==SELECT_PICTURE){
                 imagenUri = data.getData();
                 imagenPers.setImageURI(imagenUri);
+                Toast.makeText(this,imagenUri.toString(),Toast.LENGTH_SHORT).show();
             //}
 
         }

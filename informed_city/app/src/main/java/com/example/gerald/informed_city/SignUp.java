@@ -1,6 +1,7 @@
 package com.example.gerald.informed_city;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,10 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 public class SignUp extends AppCompatActivity {
@@ -44,9 +49,24 @@ public class SignUp extends AppCompatActivity {
                 jsonParam.put("email", correoValor);
                 jsonParam.put("password", contra1Valor);
                 String  result = conexion.execute("https://informedcity.herokuapp.com/auth","POST",jsonParam.toString()).get();
-
                 if(result.equals("OK")){
-                    startActivity(intent);
+
+                    DownLoadTask downLoadTask = new DownLoadTask();
+                    String resultaJson = downLoadTask.execute(correoValor,contra1Valor).get();
+                    //Toast.makeText(this,resultaJson,Toast.LENGTH_LONG).show();
+
+                    if(!resultaJson.equals("Usuario Incorrecto")){
+                        JSONObject nuevoJson = new JSONObject(resultaJson);
+                        JSONObject data = nuevoJson.getJSONObject("data");
+                        String id = data.getString("id");
+                        intent.putExtra("id",id);
+                        Toast.makeText(this,id,Toast.LENGTH_LONG).show();
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(this,"idError",Toast.LENGTH_LONG).show();
+                    }
+
+
                 }else{
                     Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
                 }
@@ -54,8 +74,49 @@ public class SignUp extends AppCompatActivity {
                 Toast.makeText(this,"No coincide la contraseña",Toast.LENGTH_SHORT).show();
             }
         }else{
-            Toast.makeText(this,"Datos incompletos",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Datos incompletos",Toast.LENGTH_LONG).show();
         }
     }
+
+    public class DownLoadTask extends AsyncTask<String, Void, String> {
+        protected String doInBackground(String... strings) {
+            String xmlString;
+            HttpURLConnection urlConnection = null;
+            URL url = null;
+
+            try {
+                url = new URL("https://informedcity.herokuapp.com/auth/sign_in");
+                urlConnection = (HttpURLConnection)url.openConnection();
+                urlConnection.setRequestProperty("email",strings[0]);
+                urlConnection.setRequestProperty("password",strings[1]);
+                urlConnection.setRequestProperty("Content-Type","application/json");
+                urlConnection.setRequestMethod("POST");
+                if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    StringBuilder xmlResponse = new StringBuilder();
+                    BufferedReader input = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    String strLine = null;
+                    while ((strLine = input.readLine()) != null) {
+                        xmlResponse.append(strLine);
+                    }
+                    xmlString = xmlResponse.toString();
+                    //xmlString += urlConnection.getHeaderField("access-token");
+                    input.close();
+                    return xmlString;
+
+                }else{
+                    return "Usuario Incorrecto";
+                }
+            }
+            catch (Exception e) {
+                return e.toString();
+            }
+            finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
+            }
+        }
+    }
+
 
 }
