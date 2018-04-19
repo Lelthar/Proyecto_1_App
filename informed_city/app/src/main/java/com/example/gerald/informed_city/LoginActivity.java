@@ -129,11 +129,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 valorCorreo+="@hotmail.com";
                 String result = downLoadTask.execute(valorCorreo,valorContra).get();
                 if(result.equals("Usuario Incorrecto")){
-                    //Intent intent = new Intent(LoginActivity.this,Menu_principal.class);
-                    //startActivity(intent);
                     Toast.makeText(this,"Usuario Incorrecto",Toast.LENGTH_LONG).show();
                 }else{
                     Toast.makeText(this,"Usuario Correcto",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(LoginActivity.this,MenuPrincipal.class);
+                    startActivity(intent);
                 }
             }else{
                 Toast.makeText(this,"Datos incompletos",Toast.LENGTH_LONG).show();
@@ -150,6 +150,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             e.printStackTrace();
         }
     }
+
 
     public class DownLoadTask extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... strings) {
