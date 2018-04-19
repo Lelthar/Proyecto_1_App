@@ -31,6 +31,7 @@
             android:layout_alignTop="@+id/btnProgramar"
             android:layout_marginEnd="69dp"
             android:layout_marginTop="6dp"
+            android:onClick="btnProgramarClick"
             android:text="Programar Evento" />
 
         <Button
@@ -40,6 +41,7 @@
             android:layout_alignStart="@+id/btnProgramar"
             android:layout_below="@+id/btnProgramar"
             android:layout_marginTop="16dp"
+            android:onClick="btnMapaClick"
             android:text="Eventos Cercanos" />
 
         <Button
@@ -68,6 +70,7 @@
             android:layout_alignTop="@+id/btnConf"
             android:layout_marginStart="6dp"
             android:layout_marginTop="6dp"
+            android:onClick="btnCuentaClick"
             android:text="Mi Cuenta" />
 
         <Button
@@ -77,6 +80,7 @@
             android:layout_alignStart="@+id/btnConf"
             android:layout_below="@+id/btnCuenta"
             android:layout_marginTop="30dp"
+            android:onClick="btnAboutClick"
             android:text="Acerca de " />
 
         <Button

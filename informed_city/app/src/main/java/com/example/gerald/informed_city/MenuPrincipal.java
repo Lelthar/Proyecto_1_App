@@ -14,15 +14,35 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
 
-    public void ExitOnClick(View view){
+    public void ExitOnClick(View view) {
         finish();
         System.exit(0);
     }
 
-    public void btnCrearClick(View view){
-        Intent intent = new Intent(MenuPrincipal.this,crearEvento.class);
+    public void btnCrearClick(View view) {
+        Intent intent = new Intent(MenuPrincipal.this, crearEvento.class);
         startActivity(intent);
     }
 
+    public void btnProgramarClick(View view) {
+        Intent intent = new Intent(MenuPrincipal.this, eventosFuturos.class);
+        startActivity(intent);
+    }
+
+    public void btnMapaClick(View view) {
+        Intent intent = new Intent(MenuPrincipal.this, MapsActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void btnCuentaClick(View view) {
+        Intent intent = new Intent(MenuPrincipal.this, AjustesCuenta.class);
+        startActivity(intent);
+    }
+
+    public void btnAboutClick(View view) {
+        Intent intent = new Intent(MenuPrincipal.this, AcercaDe.class);
+        startActivity(intent);
+    }
 
 }

@@ -72,8 +72,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/buttonActual"
-            android:layout_alignEnd="@+id/textView6"
-            android:layout_marginBottom="15dp"
+            android:layout_alignStart="@+id/textView7"
+            android:layout_marginBottom="32dp"
             android:text="Ubicación:" />
 
         <EditText
@@ -92,12 +92,12 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/buttonGuardar"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="44dp"
-            android:text="Obtener actual" />
+            android:layout_marginBottom="19dp"
+            android:text="Establecer Ubicación" />
 
         <Button
             android:id="@+id/buttonGuardar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -117,9 +117,8 @@
             android:id="@+id/editTextActivacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/editTextDescripcion"
-            android:layout_below="@+id/textView4"
-            android:layout_marginEnd="15dp"
+            android:layout_alignStart="@+id/editTextUbicación"
+            android:layout_centerVertical="true"
             android:ems="10"
             android:inputType="textPersonName" />
 
