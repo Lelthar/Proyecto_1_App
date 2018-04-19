@@ -13,7 +13,7 @@
         tools:layout_editor_absoluteY="8dp">
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -25,52 +25,7 @@
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView11"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="31dp"
-            android:text="Estudiantes:" />
-
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView12"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="13dp"
-            android:text="Bryan Hernández Sibaja" />
-
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView13"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="11dp"
-            android:text="Marlon Reyes Montero" />
-
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView13"
-            android:layout_below="@+id/textView14"
-            android:layout_marginTop="11dp"
-            android:text="Gerald Morales Alvarado" />
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView15"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="27dp"
-            android:text="Curso:" />
-
-        <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/textView21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -78,40 +33,81 @@
             android:text="Desarrollo de Aplicaciones para Disp. Móviles" />
 
         <TextView
-            android:id="@+id/textView18"
+            android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView17"
+            android:layout_above="@+id/button3"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="34dp"
+            android:layout_marginBottom="26dp"
+            android:text="Cartago; I Semestre, 2018" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView21"
+            android:layout_centerHorizontal="true"
+            android:text="Curso:" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView21"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="38dp"
             android:text="Profesor:" />
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/textView29"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView18"
+            android:layout_below="@+id/textView28"
             android:layout_centerHorizontal="true"
             android:text="Andrei Fuentes Leiva" />
 
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView19"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="38dp"
-            android:text="Cartago; I Semestre, 2018" />
-
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="19dp"
             android:background="#194A43"
             android:text="Contactar"
             android:textColor="#FFFFFF" />
 
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView8"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="52dp"
+            android:text="Estudiantes" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView30"
+            android:layout_centerHorizontal="true"
+            android:text="Bryan Hernández Sibaja" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView31"
+            android:layout_centerHorizontal="true"
+            android:text="Gerald Morales Alvarado" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView32"
+            android:layout_centerHorizontal="true"
+            android:text="Marlon Reyes Montero" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
