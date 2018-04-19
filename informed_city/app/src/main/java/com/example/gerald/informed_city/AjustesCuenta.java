@@ -20,6 +20,11 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.concurrent.ExecutionException;
+
+
 
 public class AjustesCuenta extends AppCompatActivity {
 
@@ -37,6 +42,8 @@ public class AjustesCuenta extends AppCompatActivity {
 
     private Button botonGuardar;
     private ImageButton botonImagen;
+
+    private Conexion conexion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,17 +57,16 @@ public class AjustesCuenta extends AppCompatActivity {
 
         intentLlamada = getIntent().getExtras().getInt("intent"); //Saber que intent lo esta invocando
 
-        if(intentLlamada==1){
-            correo = getIntent().getExtras().getString("correo");
-            contrav = getIntent().getExtras().getString("contra");
-            correoEdt.setText(correo);
-            correoEdt.setEnabled(false);
-        }
         botonGuardar = findViewById(R.id.btGuardaAjustes);
         botonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                guardarAjustes();
+                try{
+                    guardarAjustes();
+                }catch(JSONException e){
+                    e.toString();
+                }
+
             }
         });
 
@@ -72,13 +78,48 @@ public class AjustesCuenta extends AppCompatActivity {
             }
         });
 
+        if(intentLlamada==1){
+            correo = getIntent().getExtras().getString("correo");
+            contrav = getIntent().getExtras().getString("contra");
+            correoEdt.setText(correo);
+            correoEdt.setEnabled(false);
+        }else{
+            correo = getIntent().getExtras().getString("correo");
+            correoEdt.setText(correo);
+            correoEdt.setEnabled(false);
+        }
+
+
     }
 
-    public void guardarAjustes(){
+    public void guardarAjustes()throws JSONException{
         String nombreValor = nombre.getText().toString();
         String seudoValor = seudo.getText().toString();
         if(!nombreValor.equals("") && !seudoValor.equals("")){
-            Toast.makeText(this,"Guardar Datos",Toast.LENGTH_SHORT).show();
+            conexion = new Conexion();
+            JSONObject jsonParam = new JSONObject();
+            jsonParam.put("name", nombreValor);
+            jsonParam.put("nickname", seudoValor);
+            jsonParam.put("email", correo);
+            jsonParam.put("imagen","Path");
+            jsonParam.put("user_id",1);
+            String result="";
+            try {
+                result = conexion.execute("https://informedcity.herokuapp.com/user_extendeds","POST",jsonParam.toString()).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+
+            if(result.equals("Created")){
+                Toast.makeText(this,"Guardado",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AjustesCuenta.this,LoginActivity.class);
+                startActivity(intent);
+            }else{
+                Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
+            }
+            //Toast.makeText(this,"Guardar Datos",Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this,"Datos incompletos",Toast.LENGTH_SHORT).show();
         }
