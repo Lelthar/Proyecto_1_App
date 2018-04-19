@@ -46,8 +46,9 @@
             android:id="@+id/spinnerCategoria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textView6"
-            android:layout_alignEnd="@+id/editTextEvento" />
+            android:layout_alignEnd="@+id/editTextEvento"
+            android:layout_alignStart="@+id/editTextEvento"
+            android:layout_alignTop="@+id/textView6" />
 
         <TextView
             android:id="@+id/textView7"
@@ -62,48 +63,39 @@
             android:id="@+id/editTextDescripcion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView7"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+            android:layout_alignTop="@+id/textView7"
+            android:layout_toEndOf="@+id/textView2"
             android:ems="10"
             android:inputType="textMultiLine" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextDescripcion"
-            android:layout_marginTop="67dp"
-            android:layout_toStartOf="@+id/editTextDescripcion"
-            android:text="Ubicación:" />
-
-        <EditText
-            android:id="@+id/editTextUbicación"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView9"
-            android:layout_alignBottom="@+id/textView9"
-            android:layout_toEndOf="@+id/textView7"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/buttonActual"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextUbicación"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="18dp"
-            android:text="Obtener actual" />
 
         <Button
             android:id="@+id/buttonGuardar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/editTextDescripcion"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="18dp"
+            android:layout_marginBottom="21dp"
+            android:layout_marginEnd="36dp"
             android:text="Guardar" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextDescripcion"
+            android:layout_marginTop="38dp"
+            android:layout_toEndOf="@+id/textView6"
+            android:text="Establecer Ubicación" />
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/buttonGuardar"
+            android:layout_alignBottom="@+id/buttonGuardar"
+            android:layout_alignStart="@+id/textView7"
+            android:layout_marginStart="47dp"
+            android:text="Cancelar" />
 
 
     </RelativeLayout>

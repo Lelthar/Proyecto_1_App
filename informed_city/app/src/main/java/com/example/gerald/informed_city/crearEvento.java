@@ -1,7 +1,9 @@
 package com.example.gerald.informed_city;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 public class crearEvento extends AppCompatActivity {
 
@@ -10,4 +12,10 @@ public class crearEvento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_evento);
     }
+
+    public void Cancelar(View view){
+        Intent intent = new Intent(crearEvento.this,MenuPrincipal.class);
+        startActivity(intent);
+    }
+
 }
