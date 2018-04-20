@@ -82,8 +82,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/buttonGuardar"
-            android:layout_marginBottom="38dp"
+            android:layout_marginBottom="43dp"
             android:layout_toEndOf="@+id/textView6"
+            android:onClick="btnUbicacion"
             android:text="Establecer Ubicación" />
 
 
