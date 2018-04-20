@@ -6,91 +6,113 @@
     android:layout_height="match_parent"
     tools:context="com.example.gerald.informed_city.MenuPrincipal">
 
-    <RelativeLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="9dp">
-
-        <Button
-            android:id="@+id/btnProgramar"
-            android:layout_width="100dp"
+        tools:layout_editor_absoluteY="9dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="33dp"
-            android:layout_marginTop="22dp"
-            android:layout_toStartOf="@+id/btnProg"
-            android:onClick="btnCrearClick"
-            android:text="Crear Evento" />
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnProg"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/btnProgramar"
-            android:layout_marginEnd="69dp"
-            android:layout_marginTop="6dp"
-            android:onClick="btnProgramarClick"
-            android:text="Programar Evento" />
+            <Button
+                android:id="@+id/btnProgramar"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="60dp"
+                android:onClick="btnCrearClick"
+                android:text="Crear Evento" />
 
-        <Button
-            android:id="@+id/btnMapEventos"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignStart="@+id/btnProgramar"
-            android:layout_below="@+id/btnProgramar"
-            android:layout_marginTop="16dp"
-            android:onClick="btnMapaClick"
-            android:text="Eventos Cercanos" />
+            <Button
+                android:id="@+id/btnProg"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="btnProgramarClick"
+                android:text="Programar Evento"
+                android:textSize="12sp" />
 
-        <Button
-            android:id="@+id/btnMuro"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignStart="@+id/btnProg"
-            android:layout_alignTop="@+id/btnMapEventos"
-            android:text="Anuncios Instituciones Públicas"
-            android:textSize="13sp" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/btnConf"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignStart="@+id/btnMapEventos"
-            android:layout_below="@+id/btnMapEventos"
-            android:layout_marginTop="25dp"
-            android:text="Herramientas" />
 
-        <Button
-            android:id="@+id/btnCuenta"
-            android:layout_width="100dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_alignStart="@+id/btnMuro"
-            android:layout_alignTop="@+id/btnConf"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="6dp"
-            android:onClick="btnCuentaClick"
-            android:text="Mi Cuenta" />
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button10"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignStart="@+id/btnConf"
-            android:layout_below="@+id/btnCuenta"
-            android:layout_marginTop="30dp"
-            android:onClick="btnAboutClick"
-            android:text="Acerca de " />
+            <Button
+                android:id="@+id/btnMapEventos"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_marginRight="60dp"
+                android:layout_height="100dp"
+                android:onClick="btnMapaClick"
+                android:text="Eventos Cercanos" />
 
-        <Button
-            android:id="@+id/btnSalir"
-            android:layout_width="100dp"
+            <Button
+                android:id="@+id/btnMuro"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Anuncios Instituciones"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_alignStart="@+id/btnCuenta"
-            android:layout_alignTop="@+id/button10"
-            android:layout_marginStart="7dp"
-            android:onClick="ExitOnClick"
-            android:text="Salir" />
-    </RelativeLayout>
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnConf"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:text="Herramientas"
+                android:layout_marginRight="60dp"
+                android:textSize="10sp"/>
+
+            <Button
+                android:id="@+id/btnCuenta"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="btnCuentaClick"
+                android:text="Mi Cuenta" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button10"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="btnAboutClick"
+                android:layout_marginRight="60dp"
+                android:text="Acerca de " />
+
+            <Button
+                android:id="@+id/btnSalir"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignStart="@+id/btnCuenta"
+                android:layout_alignTop="@+id/button10"
+                android:onClick="ExitOnClick"
+                android:text="Salir" />
+        </LinearLayout>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
