@@ -65,10 +65,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    public void hacerToast(){
-        Toast.makeText(this,"Punto",Toast.LENGTH_LONG).show();
-    }
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -96,19 +92,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 return  false;
             }
         });
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-
-            @Override
-            public void onMapClick(LatLng point) {
-                MarkerOptions marker = new MarkerOptions().position(
-                        new LatLng(point.latitude, point.longitude)).title("New Marker");
-
-                mMap.addMarker(marker);
-            }
-        });
-        //mMap.resetMinMaxZoomPreference();
-        //mMap.setMaxZoomPreference(6.f);
-        //mMap.setMinZoomPreference(13f);
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
@@ -159,6 +142,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 for(int i=0;i<listaEventos.size();i++){
                     Evento evento = listaEventos.get(i);
                     LatLng posicion = new LatLng(evento.getLatitud(),evento.getLongitud());
+                    MarkerOptions marca = new MarkerOptions();
                     mMap.addMarker(new MarkerOptions().position(posicion).title(evento.getNombre()).snippet(evento.getCategoria())
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 }
