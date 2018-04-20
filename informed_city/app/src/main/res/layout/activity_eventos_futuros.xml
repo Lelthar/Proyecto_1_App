@@ -90,13 +90,6 @@
             android:text="Ingresar Fecha de Evento" />
 
 
-        <TextView
-            android:id="@+id/tvPlace"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="" />
-
         <Button
             android:id="@+id/btnPlace"
             android:layout_width="match_parent"
@@ -105,9 +98,17 @@
             android:layout_centerHorizontal="true"
             android:layout_marginEnd="30dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:onClick="goPlacePicker"
             android:text="Establecer Ubicación" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="15dp"
+            android:text="Agregar Fotografía" />
 
         <Button
             android:id="@+id/buttonGuardar"
