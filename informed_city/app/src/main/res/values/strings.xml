@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">informed_city</string>
+    <string name="app_name">Informed City</string>
     <string name="title_activity_maps">Mapa Eventos</string>
     <string name="title_activity_mapas">Map</string>
     <!-- Strings related to login -->
