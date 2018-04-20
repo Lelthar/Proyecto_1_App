@@ -2,6 +2,7 @@ package com.example.gerald.informed_city;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -18,13 +19,20 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     LocationManager locationManager;
     LocationListener locationListener;
+    private ArrayList<Evento> listaEventos;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -46,12 +54,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        listaEventos = new ArrayList<>();
+        Evento evento = new Evento(1,"EVENTO NUMERO 1","Es un evento raro","mailon2","Incendio",9.869893f, -83.910499f);
+        Evento evento1 = new Evento(1,"EVENTO NUMERO 2","Es un evento raro2","mailon2","Choque",9.868540f, -83.910499f);
+        listaEventos.add(evento);
+        listaEventos.add(evento1);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
+    public void hacerToast(){
+        Toast.makeText(this,"Punto",Toast.LENGTH_LONG).show();
+    }
 
     /**
      * Manipulates the map once available.
@@ -66,6 +82,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener()
+        {
+            @Override
+            public boolean onMarkerClick(Marker arg0) {
+
+                if(arg0 != null && arg0.getTitle().equals("EVENTO NUMERO 1")){
+                    LatLng latitud = arg0.getPosition();
+                    Intent intent1 = new Intent(MapsActivity.this, Photos.class);
+                    startActivity(intent1);
+
+                }
+                return  false;
+            }
+        });
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+            @Override
+            public void onMapClick(LatLng point) {
+                MarkerOptions marker = new MarkerOptions().position(
+                        new LatLng(point.latitude, point.longitude)).title("New Marker");
+
+                mMap.addMarker(marker);
+            }
+        });
         //mMap.resetMinMaxZoomPreference();
         //mMap.setMaxZoomPreference(6.f);
         //mMap.setMinZoomPreference(13f);
@@ -74,11 +114,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
 
                 mMap.clear();
+                for(int i=0;i<listaEventos.size();i++){
+                    Evento evento = listaEventos.get(i);
+                    LatLng posicion = new LatLng(evento.getLatitud(),evento.getLongitud());
+                    MarkerOptions marca = new MarkerOptions();
+                    mMap.addMarker(new MarkerOptions().position(posicion).title(evento.getNombre()).snippet(evento.getCategoria())
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                }
+
+                LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
                 mMap.addMarker(new MarkerOptions().position(currentLocation).title("Usted está acá"));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+
             }
 
             @Override
@@ -107,16 +156,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 mMap.clear();
 
+                for(int i=0;i<listaEventos.size();i++){
+                    Evento evento = listaEventos.get(i);
+                    LatLng posicion = new LatLng(evento.getLatitud(),evento.getLongitud());
+                    mMap.addMarker(new MarkerOptions().position(posicion).title(evento.getNombre()).snippet(evento.getCategoria())
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                }
+
                 LatLng location = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(location).title("Usted está acá"));
+                mMap.addMarker(new MarkerOptions().position(location).title("Usted está acá Inicio"));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15.5f));
                 //mMap.animateCamera(CameraUpdateFactory.zoomIn());
             }
         }catch (Exception excepcion){
             Toast.makeText(this, "No se cargo ubicación correctamente.", Toast.LENGTH_SHORT).show();
         }
-
-
 
     }
 }
