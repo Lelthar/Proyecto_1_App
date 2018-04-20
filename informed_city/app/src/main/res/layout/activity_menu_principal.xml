@@ -27,7 +27,8 @@
                 android:layout_height="100dp"
                 android:layout_marginRight="60dp"
                 android:onClick="btnCrearClick"
-                android:text="Crear Evento" />
+                android:text="Crear Evento"
+                android:textSize="10sp"/>
 
             <Button
                 android:id="@+id/btnProg"
@@ -36,7 +37,7 @@
                 android:layout_height="100dp"
                 android:onClick="btnProgramarClick"
                 android:text="Programar Evento"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -54,7 +55,8 @@
                 android:layout_marginRight="60dp"
                 android:layout_height="100dp"
                 android:onClick="btnMapaClick"
-                android:text="Eventos Cercanos" />
+                android:text="Eventos Cercanos"
+                android:textSize="10sp"/>
 
             <Button
                 android:id="@+id/btnMuro"
@@ -69,7 +71,8 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <Button
                 android:id="@+id/btnConf"
@@ -86,7 +89,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:onClick="btnCuentaClick"
-                android:text="Mi Cuenta" />
+                android:text="Mi Cuenta"
+                android:textSize="10sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -102,7 +106,8 @@
                 android:layout_height="100dp"
                 android:onClick="btnAboutClick"
                 android:layout_marginRight="60dp"
-                android:text="Acerca de " />
+                android:text="Acerca de "
+                android:textSize="10sp"/>
 
             <Button
                 android:id="@+id/btnSalir"
@@ -112,7 +117,8 @@
                 android:layout_alignStart="@+id/btnCuenta"
                 android:layout_alignTop="@+id/button10"
                 android:onClick="ExitOnClick"
-                android:text="Salir" />
+                android:text="Salir"
+                android:textSize="10sp"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
