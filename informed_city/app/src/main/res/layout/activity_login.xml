@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/btRegis"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="35dp"
+            android:layout_marginTop="33dp"
             android:background="#194A43"
             android:onClick="inicioSesion"
             android:text="Iniciar Sesión"
@@ -39,18 +39,19 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="43dp"
+            android:layout_marginTop="33dp"
             android:background="#194A43"
             android:text="Registrarse"
             android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="18dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="33dp"
             android:text="Bienvenido (a). Inicie Sesión para continuar."
             android:textColor="#000000" />
 
@@ -58,9 +59,10 @@
             android:id="@+id/edtContra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/textView"
+            android:layout_alignStart="@+id/edtemail"
             android:layout_centerVertical="true"
             android:ems="10"
+            android:layout_marginTop="33dp"
             android:inputType="textPassword" />
 
         <TextView
@@ -69,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/edtContra"
             android:layout_alignStart="@+id/textView"
-            android:layout_marginBottom="14dp"
+            android:layout_marginTop="33dp"
             android:text="Contraseña" />
 
         <TextView
@@ -85,9 +87,8 @@
             android:id="@+id/edtemail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/textView2"
-            android:layout_alignStart="@+id/edtContra"
-            android:layout_marginBottom="15dp"
+            android:layout_alignEnd="@+id/textView"
+            android:layout_below="@+id/textView3"
             android:ems="10"
             android:inputType="textEmailAddress" />
     </RelativeLayout>
