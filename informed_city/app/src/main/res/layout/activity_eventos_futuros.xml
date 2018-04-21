@@ -23,7 +23,7 @@
             android:text="Nombre evento:" />
 
         <EditText
-            android:id="@+id/editTextEvento"
+            android:id="@+id/txtTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView2"
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textView2"
-            android:layout_below="@+id/editTextEvento"
+            android:layout_below="@+id/txtTitulo"
             android:layout_marginEnd="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="25dp"
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView6"
-            android:layout_alignEnd="@+id/editTextEvento"
+            android:layout_alignEnd="@+id/txtTitulo"
             android:layout_marginEnd="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="5dp"></Spinner>
@@ -68,7 +68,7 @@
             android:text="Descripción:" />
 
         <EditText
-            android:id="@+id/editTextDescripcion"
+            android:id="@+id/txtDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView7"
@@ -103,14 +103,6 @@
             android:text="Establecer Ubicación" />
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="15dp"
-            android:text="Agregar Fotografía" />
-
-        <Button
             android:id="@+id/buttonGuardar"
             style="@android:style/Widget.Material.Button.Colored"
             android:layout_width="match_parent"
@@ -120,6 +112,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="25dp"
+            android:onClick="GuardarEvento"
             android:text="Guardar" />
 
 

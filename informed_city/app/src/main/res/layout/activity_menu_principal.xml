@@ -27,7 +27,7 @@
                 android:layout_height="100dp"
                 android:layout_marginRight="60dp"
                 android:onClick="btnCrearClick"
-                android:text="Crear Evento"
+                android:text="Crear\n Evento"
                 android:textSize="10sp"/>
 
             <Button
