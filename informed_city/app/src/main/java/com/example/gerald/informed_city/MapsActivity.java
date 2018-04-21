@@ -77,6 +77,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
+    public void enviarDatos(Marker arg0){
+        try{
+            if(arg0 != null){
+                String marcaSeleccionada = arg0.getTitle();
+                int num = buscarEvento(marcaSeleccionada);
+                if(num!=-1){
+                    Evento eventoSelec = listaEventos.get(num);
+                    Intent intent1 = new Intent(MapsActivity.this, DatosEvento.class);
+                    //Toast.makeText(this,eventoSelec.getNombre(),Toast.LENGTH_LONG).show();
+
+                    intent1.putExtra("id",eventoSelec.getNumero());
+                    intent1.putExtra("2",eventoSelec.getNombre());
+                    intent1.putExtra("3",eventoSelec.getDescripcion());
+                    // intent1.putExtra("4",eventoSelec.getCreador());
+                    intent1.putExtra("5",eventoSelec.getCategoria());
+                    // intent1.putExtra("6",eventoSelec.getLatitud());
+                    // intent1.putExtra("7",eventoSelec.getLongitud());
+                    intent1.putExtra("8",eventoSelec.getFecha());
+                    startActivity(intent1);
+                }
+
+            }
+        }catch (Exception e){
+            Toast.makeText(this,e.toString(),Toast.LENGTH_LONG).show();
+        }
+
+    }
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -94,25 +121,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         {
             @Override
             public boolean onMarkerClick(Marker arg0) {
+                enviarDatos(arg0);
 
-                if(arg0 != null){
-                    String marcaSeleccionada = arg0.getTitle();
-                    int num = buscarEvento(marcaSeleccionada);
-                    if(num!=-1){
-                        Evento eventoSelec = listaEventos.get(num);
-                        Intent intent1 = new Intent(MapsActivity.this, DatosEvento.class);
-                        //intent1.putExtra("id",eventoSelec.getNumero());
-                        /*intent1.putExtra("2",eventoSelec.getNombre());
-                        intent1.putExtra("3",eventoSelec.getDescripcion());
-                        intent1.putExtra("4",eventoSelec.getCreador());
-                        intent1.putExtra("5",eventoSelec.getCategoria());
-                        intent1.putExtra("6",eventoSelec.getLatitud());
-                        intent1.putExtra("7",eventoSelec.getLongitud());
-                        intent1.putExtra("8",eventoSelec.getFecha());*/
-                        startActivity(intent1);
-                    }
-
-                }
                 return  false;
             }
         });

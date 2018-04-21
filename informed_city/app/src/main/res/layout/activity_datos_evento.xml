@@ -22,13 +22,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/edtEvento"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
             android:layout_marginTop="10dp"
-            android:ems="10"
             android:inputType="textPersonName" />
 
         <TextView
@@ -41,11 +40,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/edtCategoria"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:ems="10"
+            android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:layout_marginStart="80dp"
             android:layout_marginTop="10dp" />
@@ -60,11 +58,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/edtHora"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:ems="10"
+            android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:layout_marginStart="80dp"
             android:layout_marginTop="10dp" />
@@ -78,11 +75,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/edtConfirmacion"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:ems="10"
+            android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:layout_marginStart="80dp"
             android:layout_marginTop="10dp" />
@@ -96,14 +92,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/edtDescripcion"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:ems="10"
-            android:inputType="textPersonName"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:inputType="textPersonName" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -115,21 +110,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Reportar" />
+                android:text="Reportar"
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/btComentar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Comentar" />
+                android:text="Comentar"
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/btVerificar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Verificar" />
+                android:text="Verificar"
+                android:visibility="invisible" />
         </LinearLayout>
 
     </LinearLayout>
