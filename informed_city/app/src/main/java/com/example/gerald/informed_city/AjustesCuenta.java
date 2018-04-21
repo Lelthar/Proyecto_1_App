@@ -119,6 +119,8 @@ public class AjustesCuenta extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajustes_cuenta);
+
+        checkPermisosReadStorage(this);
         datos_usuario = null;
         AWSMobileClient.getInstance().initialize(this).execute();
 
@@ -241,7 +243,7 @@ public class AjustesCuenta extends AppCompatActivity {
                     extension = ".png";
                 }
 
-                uploadWithTransferUtility(imagenUri.getLastPathSegment(),seudoValor,extension);
+                uploadWithTransferUtility(imagenUri.getLastPathSegment(),json_user.getString("image"),extension,true);
                 path_image = "https://s3.amazonaws.com/informedcity-userfiles-mobilehub-283008059/uploads/"+seudoValor+extension;
             }else{
                 path_image = json_user.getString("image");
@@ -292,7 +294,7 @@ public class AjustesCuenta extends AppCompatActivity {
                 extension = ".png";
             }
 
-            uploadWithTransferUtility(imagenUri.getLastPathSegment(),seudoValor,extension);
+            uploadWithTransferUtility(imagenUri.getLastPathSegment(),seudoValor,extension,false);
 
             conexion = new Conexion();
 
@@ -339,16 +341,16 @@ public class AjustesCuenta extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
             //if(requestCode==SELECT_PICTURE){
-                imagenUri = data.getData();
-                imagenPers.setImageURI(imagenUri);
-                //Toast.makeText(this,imagenUri.toString(),Toast.LENGTH_SHORT).show();
+            imagenUri = data.getData();
+            imagenPers.setImageURI(imagenUri);
+            //Toast.makeText(this,imagenUri.toString(),Toast.LENGTH_SHORT).show();
 
             //}
 
         }
     }
 
-    public void uploadWithTransferUtility(String path,String nickname,String extension) {
+    public void uploadWithTransferUtility(String path,String nickname,String extension,boolean crear) {
         if (checkPermisosReadStorage(this)) {
             try{
                 BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAI32IBF77PAMW4HCQ", "EdFcDO/Q/tGJdGZiCjSZHdcNaaDlAIiNcKrN7/pD");
@@ -361,15 +363,23 @@ public class AjustesCuenta extends AppCompatActivity {
                                 .build();
 
 
-                TransferObserver uploadObserver =
-                        transferUtility.upload("uploads/"+nickname+extension,new File(path));
+                TransferObserver uploadObserver = null;
+                if(crear){
+                    uploadObserver =
+                            transferUtility.upload("uploads/"+nickname+extension,new File(path));
+                }else{
+                    uploadObserver =
+                            transferUtility.upload(nickname,new File(path));
+                }
+
 
                 uploadObserver.setTransferListener(new TransferListener() {
 
                     @Override
                     public void onStateChanged(int id, TransferState state) {
                         if (TransferState.COMPLETED == state) {
-
+                            Log.d("ERROR: ","Sirve la imagen");
+                            //Toast.makeText(getApplicationContext(),"Sirve la imagen",Toast.LENGTH_LONG).show();
                             //Picasso.with(getApplicationContext()).load("https://s3.amazonaws.com/informedcity-userfiles-mobilehub-283008059/uploads/Nueva1.png").into(imageView);
                         }
                     }
@@ -386,13 +396,16 @@ public class AjustesCuenta extends AppCompatActivity {
                     @Override
                     public void onError(int id, Exception ex) {
                         //Error
-
+                        Log.d("ERROR: ",ex.toString());
+                        Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
                     }
 
                 });
 
                 if (TransferState.COMPLETED == uploadObserver.getState()) {
                     //Upload listo
+                    Log.d("ERROR: ","Sirve la imagen");
+                    Toast.makeText(getApplicationContext(),"Sirve la imagen",Toast.LENGTH_LONG).show();
                 }
 
             }catch (Exception e){
