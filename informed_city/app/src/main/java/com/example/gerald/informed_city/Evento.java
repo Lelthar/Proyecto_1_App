@@ -4,15 +4,16 @@ public class Evento {
 
     private int numero;
     private String nombre;
-    private String creador;
+    private int creador;
     private String categoria;
     private String descripcion;
     private float latitud;
     private float longitud;
+    private String fecha;
 
     public Evento(){}
 
-    public Evento(int numero,String nombre,String descripcion,String creador,String categoria,float latitud,float longitud){
+    public Evento(int numero,String nombre,String descripcion,int creador,String categoria,float latitud,float longitud,String fecha){
         this.numero = numero;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -20,6 +21,7 @@ public class Evento {
         this.categoria = categoria;
         this.latitud = latitud;
         this.longitud = longitud;
+        this.fecha = fecha;
     }
 
     public void setNumero(int numero){
@@ -31,7 +33,7 @@ public class Evento {
     public void setDescripcion(String descripcion){
         this.descripcion=descripcion;
     }
-    public void setCreador(String creador){
+    public void setCreador(int creador){
         this.creador = creador;
     }
     public  void setCategoria(String categoria){
@@ -50,15 +52,12 @@ public class Evento {
     public String getDescripcion(){
         return this.descripcion;
     }
-
     public String getCategoria() {
         return this.categoria;
     }
-
-    public String getCreador() {
+    public int getCreador() {
         return this.creador;
     }
-
     public int getNumero(){
         return this.numero;
     }
@@ -68,4 +67,5 @@ public class Evento {
     public float getLongitud(){
         return this.longitud;
     }
+    public String getFecha(){return  this.fecha;};
 }
