@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -22,10 +23,20 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -55,10 +66,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         listaEventos = new ArrayList<>();
-        Evento evento = new Evento(1,"EVENTO NUMERO 1","Es un evento raro","mailon2","Incendio",9.869893f, -83.910499f);
-        Evento evento1 = new Evento(1,"EVENTO NUMERO 2","Es un evento raro2","mailon2","Choque",9.868540f, -83.910499f);
-        listaEventos.add(evento);
-        listaEventos.add(evento1);
+        //Evento evento = new Evento(1,"EVENTO NUMERO 1","Es un evento raro",5,"Incendio",9.869893f, -83.910499f);
+        //Evento evento1 = new Evento(1,"EVENTO NUMERO 2","Es un evento raro2",5,"Choque",9.868540f, -83.910499f);
+        //listaEventos.add(evento);
+        //listaEventos.add(evento1);
+        cargarEventos();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -83,10 +95,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMarkerClick(Marker arg0) {
 
-                if(arg0 != null && arg0.getTitle().equals("EVENTO NUMERO 1")){
-                    LatLng latitud = arg0.getPosition();
-                    Intent intent1 = new Intent(MapsActivity.this, Photos.class);
-                    startActivity(intent1);
+                if(arg0 != null){
+                    String marcaSeleccionada = arg0.getTitle();
+                    int num = buscarEvento(marcaSeleccionada);
+                    if(num!=-1){
+                        Evento eventoSelec = listaEventos.get(num);
+                        Intent intent1 = new Intent(MapsActivity.this, DatosEvento.class);
+                        //intent1.putExtra("id",eventoSelec.getNumero());
+                        /*intent1.putExtra("2",eventoSelec.getNombre());
+                        intent1.putExtra("3",eventoSelec.getDescripcion());
+                        intent1.putExtra("4",eventoSelec.getCreador());
+                        intent1.putExtra("5",eventoSelec.getCategoria());
+                        intent1.putExtra("6",eventoSelec.getLatitud());
+                        intent1.putExtra("7",eventoSelec.getLongitud());
+                        intent1.putExtra("8",eventoSelec.getFecha());*/
+                        startActivity(intent1);
+                    }
 
                 }
                 return  false;
@@ -156,5 +180,96 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this, "No se cargo ubicación correctamente.", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public void cargarEventos(){
+        String result="";
+        DownLoadTask user_extendeds = new DownLoadTask();
+        //
+        try {
+            result = user_extendeds.execute().get();
+            //      Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
+
+            JSONArray marcas = new JSONArray(result);
+
+            for(int i= 0;i<marcas.length();i++){
+                String valorJson = marcas.getString(i);
+                JSONObject marca = new JSONObject(valorJson);
+                String nombre = marca.getString("title");
+                String categoria = marca.getString("categoria");
+                String descrpcion = marca.getString("descripcion");
+                float latitud = (float) marca.getDouble("latitud");
+                float longitud = (float) marca.getDouble("longitud");
+                int numero = marca.getInt("user_id");
+                int id=marca.getInt("id");
+                String fecha = marca.getString("created_at");
+                //Toast.makeText(this,fecha,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,id+"|"+numero+"|"+nombre+"|"+categoria+"|"+descrpcion+"|"+latitud+"|"+longitud,Toast.LENGTH_LONG).show();
+                Evento evento = new Evento(id,
+                        nombre,
+                        descrpcion,
+                        numero,
+                        categoria,
+                        latitud,
+                        longitud,
+                        fecha);
+                listaEventos.add(evento);
+
+            }
+        } catch (InterruptedException e) {
+            Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
+        } catch (ExecutionException e) {
+            Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public class DownLoadTask extends AsyncTask<String, Void, String> {
+        protected String doInBackground(String... strings) {
+            String xmlString;
+            HttpURLConnection urlConnection = null;
+            URL url = null;
+            try {
+                url = new URL("https://informedcity.herokuapp.com/events");
+                urlConnection = (HttpURLConnection)url.openConnection();
+                urlConnection.setRequestProperty("Content-Type","application/json");
+                urlConnection.setRequestMethod("GET");
+                if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    StringBuilder xmlResponse = new StringBuilder();
+                    BufferedReader input = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    String strLine = null;
+                    while ((strLine = input.readLine()) != null) {
+                        xmlResponse.append(strLine);
+                    }
+                    xmlString = xmlResponse.toString();
+                    //xmlString += urlConnection.getHeaderField("access-token");
+                    input.close();
+                    return xmlString;
+
+                }else{
+                    return "Error";
+                }
+            }
+            catch (Exception e) {
+                return e.toString();
+            }
+            finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
+            }
+        }
+    }
+    public int buscarEvento(String evento){
+        int resutl=-1;
+        for(int i=0;i<listaEventos.size();i++){
+            Evento event = listaEventos.get(i);
+            if(event.getNombre().equals(evento)){
+                return i;
+            }
+        }
+        return  resutl;
     }
 }
