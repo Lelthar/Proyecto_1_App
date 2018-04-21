@@ -74,6 +74,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginBottom="19dp"
             android:background="#194A43"
+            android:onClick="Contactar"
             android:text="Contactar"
             android:textColor="#FFFFFF" />
 

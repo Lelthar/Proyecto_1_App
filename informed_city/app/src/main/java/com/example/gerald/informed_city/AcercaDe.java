@@ -21,6 +21,5 @@ public class AcercaDe extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_TEXT, "");
         startActivity(Intent.createChooser(emailIntent, "Send email..."));
 
-
     }
 }
