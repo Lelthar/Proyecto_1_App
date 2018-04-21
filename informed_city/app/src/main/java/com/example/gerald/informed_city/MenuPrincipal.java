@@ -24,11 +24,13 @@ public class MenuPrincipal extends AppCompatActivity {
 
     public void btnCrearClick(View view) {
         Intent intent = new Intent(MenuPrincipal.this, crearEvento.class);
+        intent.putExtra("id", correo);
         startActivity(intent);
     }
 
     public void btnProgramarClick(View view) {
         Intent intent = new Intent(MenuPrincipal.this, eventosFuturos.class);
+        intent.putExtra("id",correo);
         startActivity(intent);
     }
 
