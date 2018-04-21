@@ -59,7 +59,9 @@
         <activity
             android:name=".MapaCrear"
             android:label="@string/title_activity_mapa_crear" />
-        <activity android:name=".DatosEvento"></activity>
+        <activity android:name=".DatosEvento" />
+        <activity android:name=".WebView" />
+        <activity android:name=".WebViewNacion"></activity>
     </application>
 
 </manifest>

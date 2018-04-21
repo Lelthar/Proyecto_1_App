@@ -63,6 +63,7 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:onClick="btnInstitucionesClick"
                 android:text="Anuncios Instituciones"
                 android:textSize="10sp" />
         </LinearLayout>

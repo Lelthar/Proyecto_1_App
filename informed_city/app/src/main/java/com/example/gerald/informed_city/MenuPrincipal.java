@@ -52,4 +52,10 @@ public class MenuPrincipal extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void btnInstitucionesClick(View view){
+        Intent intent = new Intent(MenuPrincipal.this, WebViewNacion.class);
+        intent.putExtra("id", correo);
+        startActivity(intent);
+    }
+
 }
