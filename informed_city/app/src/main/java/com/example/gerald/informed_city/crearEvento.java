@@ -3,6 +3,7 @@ package com.example.gerald.informed_city;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -36,6 +37,9 @@ public class crearEvento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_evento);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerCategoria);
         datos = new String[] {"Robo o Asalto", "Accidente de Transito", "Congestion Vial", "Descarrilamiento de Tren", "Incendio", "Personas Misteriosas en la Zona", "Pleitos o Peleas",
@@ -136,6 +140,17 @@ public class crearEvento extends AppCompatActivity {
 
     public static Float convertToFloat(Double doubleValue) {
         return doubleValue == null ? null : doubleValue.floatValue();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: //hago un case por si en un futuro agrego mas opciones
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 
