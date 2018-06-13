@@ -242,7 +242,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             HttpURLConnection urlConnection = null;
             URL url = null;
             try {
-                url = new URL("https://informedcityapp.herokuapp.com/events");
+                url = new URL("https://informedcityapp.herokuapp.com/events.json");
                 urlConnection = (HttpURLConnection)url.openConnection();
                 urlConnection.setRequestProperty("Content-Type","application/json");
                 urlConnection.setRequestMethod("GET");

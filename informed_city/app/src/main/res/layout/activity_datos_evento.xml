@@ -110,24 +110,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Reportar"
-                android:visibility="invisible" />
+                android:text="Reportar" />
 
             <Button
                 android:id="@+id/btComentar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Comentar"
-                android:visibility="invisible" />
+                android:text="Comentar" />
 
             <Button
                 android:id="@+id/btVerificar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Verificar"
-                android:visibility="invisible" />
+                android:text="Verificar" />
         </LinearLayout>
 
     </LinearLayout>

@@ -22,6 +22,7 @@ public class DatosEvento extends AppCompatActivity {
         setContentView(R.layout.activity_datos_evento);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         id = getIntent().getExtras().getInt("id");
         nombre = getIntent().getExtras().getString("2");
         descripcion = getIntent().getExtras().getString("3");
