@@ -61,7 +61,8 @@
             android:label="@string/title_activity_mapa_crear" />
         <activity android:name=".DatosEvento" />
         <activity android:name=".WebView" />
-        <activity android:name=".WebViewNacion"></activity>
+        <activity android:name=".WebViewNacion" />
+        <activity android:name=".MuroInstituciones"></activity>
     </application>
 
 </manifest>
