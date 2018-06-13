@@ -1,8 +1,11 @@
 package com.example.gerald.informed_city;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,12 +19,20 @@ public class DatosEvento extends AppCompatActivity {
     String categoria;
     String fecha;
 
+    private Button buttonReportar;
+    private Button buttonVerificar;
+    private Button buttonComentar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_evento);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        buttonComentar = findViewById(R.id.btComentar);
+        buttonReportar = findViewById(R.id.btReportar);
+        buttonVerificar = findViewById(R.id.btVerificar);
 
         id = getIntent().getExtras().getInt("id");
         nombre = getIntent().getExtras().getString("2");
@@ -41,7 +52,26 @@ public class DatosEvento extends AppCompatActivity {
         TextView text4 = findViewById(R.id.edtDescripcion);
         text4.setText(descripcion);
 
+        buttonVerificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
+        buttonReportar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(DatosEvento.this, ReportarActivity.class);
+                intent1.putExtra("id",id);
+                startActivity(intent1);
+            }
+        });
+        buttonComentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
