@@ -50,7 +50,7 @@ public class SignUp extends AppCompatActivity {
                 JSONObject jsonParam = new JSONObject();
                 jsonParam.put("email", correoValor);
                 jsonParam.put("password", contra1Valor);
-                String  result = conexion.execute("https://informedcity.herokuapp.com/auth","POST",jsonParam.toString()).get();
+                String  result = conexion.execute("https://informedcityapp.herokuapp.com/auth","POST",jsonParam.toString()).get();
                 if(result.equals("OK")){
 
                     DownLoadTask downLoadTask = new DownLoadTask();
@@ -87,7 +87,7 @@ public class SignUp extends AppCompatActivity {
             URL url = null;
 
             try {
-                url = new URL("https://informedcity.herokuapp.com/auth/sign_in");
+                url = new URL("https://informedcityapp.herokuapp.com/auth/sign_in");
                 urlConnection = (HttpURLConnection)url.openConnection();
                 urlConnection.setRequestProperty("email",strings[0]);
                 urlConnection.setRequestProperty("password",strings[1]);

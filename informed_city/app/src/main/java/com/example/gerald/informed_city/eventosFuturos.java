@@ -180,7 +180,7 @@ public class eventosFuturos extends AppCompatActivity {
         String result="";
         //
         try {
-            result = conexion.execute("https://informedcity.herokuapp.com/event_futures","POST",jsonObject.toString()).get();
+            result = conexion.execute("https://informedcityapp.herokuapp.com/event_futures","POST",jsonObject.toString()).get();
             Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
         } catch (InterruptedException e) {
             Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();

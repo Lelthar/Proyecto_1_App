@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             URL url = null;
 
             try {
-                url = new URL("https://informedcity.herokuapp.com/auth/sign_in");
+                url = new URL("https://informedcityapp.herokuapp.com/auth/sign_in");
                 urlConnection = (HttpURLConnection)url.openConnection();
                 urlConnection.setRequestProperty("email",strings[0]);
                 urlConnection.setRequestProperty("password",strings[1]);
