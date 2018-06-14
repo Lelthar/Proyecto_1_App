@@ -41,6 +41,7 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.squareup.picasso.Picasso;
 
 import java.io.BufferedReader;
@@ -126,6 +127,7 @@ public class AjustesCuenta extends AppCompatActivity {
         AlertDialog alert = alertBuilder.create();
         alert.show();
     }
+    private MixpanelAPI mixpanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +135,10 @@ public class AjustesCuenta extends AppCompatActivity {
         setContentView(R.layout.activity_ajustes_cuenta);
 
         Fabric.with(this, new Crashlytics());
+
+        mixpanel = MixpanelAPI.getInstance(this,"d61a1009087902b272677b74ff7ff8f6");
+        mixpanel.track("Ventana AjustesCuenta",null);
+        mixpanel.flush();
         checkPermisosReadStorage(this);
         datos_usuario = null;
         AWSMobileClient.getInstance().initialize(this).execute();

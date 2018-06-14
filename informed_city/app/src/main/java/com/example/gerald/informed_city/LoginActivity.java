@@ -51,7 +51,7 @@ import java.util.concurrent.ExecutionException;
 import io.fabric.sdk.android.Fabric;
 
 import static android.Manifest.permission.READ_CONTACTS;
-
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 /**
  * A login screen that offers login via email/password.
  */
@@ -83,6 +83,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private MixpanelAPI mixpanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +94,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // TODO: Move this to where you establish a user session
         logUser();
 
+        mixpanel = MixpanelAPI.getInstance(this,"d61a1009087902b272677b74ff7ff8f6");
+        mixpanel.track("Ventana Login",null);
+        mixpanel.flush();
 
         botonInicioSesion = findViewById(R.id.btIniciaSesion);
         botonRegistro = findViewById(R.id.btRegis);

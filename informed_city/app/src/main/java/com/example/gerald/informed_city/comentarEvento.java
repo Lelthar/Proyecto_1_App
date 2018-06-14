@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -36,12 +37,15 @@ public class comentarEvento extends AppCompatActivity {
   private Conexion conexion;
   private JSONObject datos_usuario;
 
-
+  private MixpanelAPI mixpanel;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_comentar_evento);
       Fabric.with(this, new Crashlytics());
+      mixpanel = MixpanelAPI.getInstance(this,"d61a1009087902b272677b74ff7ff8f6");
+      mixpanel.track("Ventana Comentar Evento",null);
+      mixpanel.flush();
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
       getSupportActionBar().setDisplayShowHomeEnabled(true);
 

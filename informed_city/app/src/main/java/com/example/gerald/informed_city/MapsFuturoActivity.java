@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,12 +61,15 @@ public class MapsFuturoActivity extends FragmentActivity implements OnMapReadyCa
 
         }
     }
-
+    private MixpanelAPI mixpanel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_futuro);
         Fabric.with(this, new Crashlytics());
+        mixpanel = MixpanelAPI.getInstance(this,"d61a1009087902b272677b74ff7ff8f6");
+        mixpanel.track("Ventana Ver Mapa Eventos Futuros",null);
+        mixpanel.flush();
         listaEventos = new ArrayList<>();
         correo = getIntent().getExtras().getString("correo");
         //Evento evento = new Evento(1,"EVENTO NUMERO 1","Es un evento raro",5,"Incendio",9.869893f, -83.910499f);

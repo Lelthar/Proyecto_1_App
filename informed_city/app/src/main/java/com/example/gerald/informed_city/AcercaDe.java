@@ -7,16 +7,22 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import com.crashlytics.android.Crashlytics;
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
+
 import io.fabric.sdk.android.Fabric;
 
 public class AcercaDe extends AppCompatActivity {
 
+    private MixpanelAPI mixpanel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acerca_de);
 
         Fabric.with(this, new Crashlytics());
+        mixpanel = MixpanelAPI.getInstance(this,"d61a1009087902b272677b74ff7ff8f6");
+        mixpanel.track("Ventana AcercaDe",null);
+        mixpanel.flush();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }

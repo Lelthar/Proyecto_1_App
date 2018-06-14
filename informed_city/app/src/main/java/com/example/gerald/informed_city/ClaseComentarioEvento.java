@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.crashlytics.android.Crashlytics;
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,12 +25,16 @@ public class ClaseComentarioEvento extends AppCompatActivity {
     private int numeroEvento;
     private String consultaJson;
     private int tipo;
-
+    private MixpanelAPI mixpanel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clase_comentario_evento);
         Fabric.with(this, new Crashlytics());
+        mixpanel = MixpanelAPI.getInstance(this,"d61a1009087902b272677b74ff7ff8f6");
+        mixpanel.track("Ventana Comentarios",null);
+        mixpanel.flush();
+
         getSupportActionBar().setTitle("COMENTARIOS: ");
         lista_view_comentario = findViewById(R.id.list_view_clase_comentario);
 
