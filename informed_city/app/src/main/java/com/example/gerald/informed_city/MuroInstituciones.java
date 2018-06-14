@@ -145,7 +145,7 @@ public class MuroInstituciones extends AppCompatActivity {
 
             lista_datos_post.add(tmp);*/
 
-            publicacion.add(institucion+", "+asunto+"\nFecha: "+fecha+".");
+            publicacion.add(institucion+", "+fecha+"\nTema: "+asunto);
         }
 
         return (ArrayList<String>) publicacion;
