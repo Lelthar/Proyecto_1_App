@@ -65,7 +65,12 @@
         <activity android:name=".MuroInstituciones" />
         <activity android:name=".ReportarActivity" />
         <activity android:name=".ComentarioActivity" />
-        <activity android:name=".PublicacionComentario"></activity>
+        <activity
+            android:name=".MapsFuturoActivity"
+            android:label="@string/title_activity_maps_futuro" />
+        <activity android:name=".DatosEventoFuturo" />
+        <activity android:name=".ReportarFuturoActivity" />
+        <activity android:name=".comentarEventoFuturo"></activity>
     </application>
 
 </manifest>

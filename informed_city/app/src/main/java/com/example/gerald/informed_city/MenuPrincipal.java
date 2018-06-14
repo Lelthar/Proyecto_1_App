@@ -44,6 +44,10 @@ public class MenuPrincipal extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void btnMapaFuturoClick(View view) {
+        Intent intent = new Intent(MenuPrincipal.this, MapsFuturoActivity.class);
+        startActivity(intent);
+    }
 
     public void btnCuentaClick(View view) {
         Intent intent = new Intent(MenuPrincipal.this, AjustesCuenta.class);
