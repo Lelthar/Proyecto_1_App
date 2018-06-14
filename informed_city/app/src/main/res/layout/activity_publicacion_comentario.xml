@@ -4,29 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MuroInstituciones">
+    tools:context=".PublicacionComentario">
 
     <RelativeLayout
-        android:layout_width="395dp"
-        android:layout_height="587dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+    android:layout_width="395dp"
+    android:layout_height="587dp"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="8dp">
 
-        <Button
-            android:id="@+id/button2"
+
+
+        <EditText
+            android:id="@+id/txtPost"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
-            android:text="Sucesos" />
+            android:editable="false"
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/btnComentar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="170dp"
+            android:background="#194A43"
+            android:textColor="#ffff"
+            android:text="Comentar" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginTop="80dp"
-            >
+            android:layout_height="360dp"
+            android:layout_marginTop="220dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,9 +50,11 @@
                 android:orientation="vertical" >
 
                 <ListView
+                    android:id="@+id/listaComentarios"
                     android:layout_width="match_parent"
                     android:layout_height="500dp" />
             </LinearLayout>
         </ScrollView>
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
