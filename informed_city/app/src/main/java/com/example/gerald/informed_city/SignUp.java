@@ -48,6 +48,7 @@ public class SignUp extends AppCompatActivity {
                 SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean("notificaciones", true);
+                editor.putString("dir", "-1");
                 editor.apply();
 
 

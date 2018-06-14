@@ -80,6 +80,7 @@ public class MenuPrincipal extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putFloat("lat", lat);
                 editor.putFloat("lon", lon);
+                editor.putString("dir", place.getAddress().toString());
                 editor.apply();
 
 
@@ -156,8 +157,35 @@ public class MenuPrincipal extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.Zona:
-                    //PLACE PICKER
-                goPlacePicker();
+                //PLACE PICKER
+
+                SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+                String S = preferences.getString("dir", null);
+                if(S!="-1"){ // si es diferente significa que ya ha guardado antes un lugar.
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("¿Desea cambar a '"+S+"' como su zona de interés?")
+                            .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // FIRE ZE MISSILES!
+                                    goPlacePicker();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // User cancelled the dialog
+                                }
+                            });
+                    // Create the AlertDialog object and return it
+                    builder.create();
+                    builder.show();
+                }
+                else{
+                    goPlacePicker();
+                }
+
+
+
+
 
                 /* OJO:Get datos de shared preferences
 
@@ -165,6 +193,7 @@ public class MenuPrincipal extends AppCompatActivity {
                 SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
                 Float f1 = preferences.getFloat("lat", (float) 0.0);
                 Float f2 = preferences.getFloat("lon", (float) 0.0);
+                String S = preferences.getString("dir", null);
 
                 System.out.println(f1);
                 System.out.println(f2);*/

@@ -1,5 +1,6 @@
 package com.example.gerald.informed_city;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -142,6 +143,10 @@ public class crearEvento extends AppCompatActivity {
     public static Float convertToFloat(Double doubleValue) {
         return doubleValue == null ? null : doubleValue.floatValue();
     }
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
