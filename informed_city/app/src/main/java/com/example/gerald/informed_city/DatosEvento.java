@@ -69,7 +69,10 @@ public class DatosEvento extends AppCompatActivity {
         buttonComentar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent1 = new Intent(DatosEvento.this, comentarEvento.class);
+                intent1.putExtra("id",id);
+                intent1.putExtra("event",nombre);
+                startActivity(intent1);
             }
         });
     }

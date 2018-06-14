@@ -41,7 +41,7 @@
             android:text="Ingrese su comentario:" />
 
         <EditText
-            android:id="@+id/edtContra"
+            android:id="@+id/editComentario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView14"
@@ -61,7 +61,7 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/buttonCrear"
+            android:id="@+id/buttonCrearComentario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

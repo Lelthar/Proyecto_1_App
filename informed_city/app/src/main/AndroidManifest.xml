@@ -63,7 +63,8 @@
         <activity android:name=".WebView" />
         <activity android:name=".WebViewNacion" />
         <activity android:name=".MuroInstituciones" />
-        <activity android:name=".ReportarActivity"></activity>
+        <activity android:name=".ReportarActivity" />
+        <activity android:name=".ComentarioActivity"></activity>
     </application>
 
 </manifest>

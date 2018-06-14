@@ -59,7 +59,6 @@ public class ReportarActivity extends AppCompatActivity {
         String motivo = editTextMotivo.getText().toString();
         String detalles = editTextDetalles.getText().toString();
         if(!motivo.isEmpty() && !detalles.isEmpty())   {
-            infoMessageDialog("Registrar mensaje");
             JSONObject jsonParam = new JSONObject();
             jsonParam.put("motivo", motivo);
             jsonParam.put("detalle", detalles);
@@ -79,6 +78,7 @@ public class ReportarActivity extends AppCompatActivity {
 
             if(result.equals("Created")){
                 Toast.makeText(this,"Guardado",Toast.LENGTH_SHORT).show();
+                onBackPressed();
             }else{
                 Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
             }
