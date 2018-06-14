@@ -95,6 +95,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     // intent1.putExtra("6",eventoSelec.getLatitud());
                     // intent1.putExtra("7",eventoSelec.getLongitud());
                     intent1.putExtra("8",eventoSelec.getFecha());
+                    intent1.putExtra("9",eventoSelec.getCantidadReportes());
                     startActivity(intent1);
                 }
 
@@ -213,6 +214,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 int numero = marca.getInt("user_id");
                 int id=marca.getInt("id");
                 String fecha = marca.getString("created_at");
+                int cantidadReportes = marca.getInt("confirmacion");
                 //Toast.makeText(this,fecha,Toast.LENGTH_SHORT).show();
                 //Toast.makeText(this,id+"|"+numero+"|"+nombre+"|"+categoria+"|"+descrpcion+"|"+latitud+"|"+longitud,Toast.LENGTH_LONG).show();
                 Evento evento = new Evento(id,
@@ -222,7 +224,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         categoria,
                         latitud,
                         longitud,
-                        fecha);
+                        fecha,cantidadReportes);
                 listaEventos.add(evento);
 
             }

@@ -10,10 +10,12 @@ public class Evento {
     private float latitud;
     private float longitud;
     private String fecha;
+    private int cantidadReportes;
 
     public Evento(){}
 
-    public Evento(int numero,String nombre,String descripcion,int creador,String categoria,float latitud,float longitud,String fecha){
+    public Evento(int numero,String nombre,String descripcion,int creador,String categoria,float latitud,float longitud,String fecha,
+                int cantidadReportes){
         this.numero = numero;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -22,7 +24,9 @@ public class Evento {
         this.latitud = latitud;
         this.longitud = longitud;
         this.fecha = fecha;
+        this.cantidadReportes=cantidadReportes;
     }
+
 
     public void setNumero(int numero){
         this.numero=numero;
@@ -68,4 +72,10 @@ public class Evento {
         return this.longitud;
     }
     public String getFecha(){return  this.fecha;};
+
+    public int getCantidadReportes(){return  this.cantidadReportes;};
+
+    public void setCantidadReportes(int cantidadReportes) {
+        this.cantidadReportes = cantidadReportes;
+    }
 }
