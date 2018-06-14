@@ -193,9 +193,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     intent.putExtra("correo",result);
                     startActivity(intent);
 
-                    MiThread hilo = new MiThread();
-                    hilo.start();
-
+                    Notificar();
                 }
             }else{
                 Toast.makeText(this,"Datos incompletos",Toast.LENGTH_LONG).show();
@@ -221,12 +219,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
 
-    class MiThread extends Thread {
-        @Override
-        public void run() {
-
-        }
-    }
 
 
 
@@ -239,7 +231,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.icon)
                 .setContentTitle("¡Nuevo(s) Evento(s) Encontrado(s)!")
-                .setContentText("Hay eventos importante cerca de tu región de interés. Click acá para más detalles.")
+                .setContentText("Hay eventos importantes cerca de tu región de interés. Click acá para más detalles.")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 // Set the intent that will fire when the user taps the notification
                 .setContentIntent(pendingIntent)
@@ -249,8 +241,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // notificationId is a unique int for each notification that you must define
         notificationManager.notify(123, mBuilder.build());
-
-        Thread.sleep(1000*60);
 
     }
 
