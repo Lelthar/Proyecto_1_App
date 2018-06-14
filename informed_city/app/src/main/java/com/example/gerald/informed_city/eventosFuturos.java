@@ -189,12 +189,14 @@ public class eventosFuturos extends AppCompatActivity {
         try {
             result = conexion.execute("https://informedcityapp.herokuapp.com/event_futures","POST",jsonObject.toString()).get();
             Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
+            onBackPressed();
         } catch (InterruptedException e) {
             Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
             Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
         } catch (ExecutionException e) {
             Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
         }
+
 
 
 
