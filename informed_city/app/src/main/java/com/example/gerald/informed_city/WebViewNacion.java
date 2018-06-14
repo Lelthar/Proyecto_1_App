@@ -12,12 +12,39 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class WebViewNacion extends AppCompatActivity {
-    private String url = "https://www.nacion.com/sucesos/";
+    private String url;
+
+
     private WebView web;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view_nacion);
+
+        Intent i=getIntent();
+        int numero =Integer.valueOf( i.getExtras().getString("leccion"));
+
+
+        switch(numero){
+            case 1:
+                url = "https://www.nacion.com/sucesos/";
+                break;
+            case 2:
+                url = "https://www.laprensalibre.cr/Noticias/cover/2/nacional";
+                break;
+            case 3:
+                url = "http://www.diarioextra.com/Seccion/sucesos";
+                break;
+            case 4:
+                url = "https://www.larepublica.net/seccion/nacionales";
+                break;
+            case 5:
+                url = "https://www.crhoy.com/site/dist/seccion-nacionales.html#/sucesos";
+                break;
+            case 6:
+                url = "https://www.lateja.cr/sucesos/";
+                break;
+        }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -28,6 +55,9 @@ public class WebViewNacion extends AppCompatActivity {
         WebSettings webSettings = web.getSettings();
         webSettings.setJavaScriptEnabled(true);
         web.loadUrl(url);
+
+        //int numero=0; //NUMERO DEBE SER LLAMADO DESDE LA OTRA VENTANA
+
 
     }
 
