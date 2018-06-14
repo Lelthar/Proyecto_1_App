@@ -43,8 +43,8 @@ public class crearEvento extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerCategoria);
-        datos = new String[] {"Robo o Asalto", "Accidente de Tránsito", "Congestión Vial", "Descarrilamiento de Tren", "Incendio", "Personas Misteriosas en la Zona", "Pleitos o Peleas",
-                "Derrumbes", "Inundaciones", "Caída de Objeto", "Persona Desaparecida", "Mascota Desaparecida", "Apagón", "Sin Agua Potable", "Espectáculo en Vía Pública", "Bloqueo de Vía", "Otros"};
+        datos = new String[] {"Robo o Asalto", "Accidente de TrÃ¡nsito", "CongestiÃ³n Vial", "Descarrilamiento de Tren", "Incendio", "Personas Misteriosas en la Zona", "Pleitos o Peleas",
+                "Derrumbes", "Inundaciones", "CaÃ­da de Objeto", "Persona Desaparecida", "Mascota Desaparecida", "ApagÃ³n", "Sin Agua Potable", "EspectÃ¡culo en VÃ­a PÃºblica", "Bloqueo de VÃ­a", "Otros"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datos);
         spinner.setAdapter(adapter);
 
