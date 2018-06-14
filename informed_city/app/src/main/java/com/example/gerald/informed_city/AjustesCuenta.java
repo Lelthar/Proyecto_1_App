@@ -57,7 +57,8 @@ import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
-
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 
 public class AjustesCuenta extends AppCompatActivity {
@@ -131,6 +132,7 @@ public class AjustesCuenta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajustes_cuenta);
 
+        Fabric.with(this, new Crashlytics());
         checkPermisosReadStorage(this);
         datos_usuario = null;
         AWSMobileClient.getInstance().initialize(this).execute();

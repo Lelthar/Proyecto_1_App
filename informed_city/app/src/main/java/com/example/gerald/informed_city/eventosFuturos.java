@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
@@ -28,6 +29,8 @@ import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
+
+import io.fabric.sdk.android.Fabric;
 
 public class eventosFuturos extends AppCompatActivity {
 
@@ -45,6 +48,7 @@ public class eventosFuturos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eventos_futuros);
+        Fabric.with(this, new Crashlytics());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //TIEMPO

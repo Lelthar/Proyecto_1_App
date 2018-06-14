@@ -10,10 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
+
+import io.fabric.sdk.android.Fabric;
 
 public class ReportarActivity extends AppCompatActivity {
 
@@ -28,6 +32,7 @@ public class ReportarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reportar);
+        Fabric.with(this, new Crashlytics());
         ID = getIntent().getExtras().getInt("id");
 
         editTextDetalles = findViewById(R.id.editTextDetalles);

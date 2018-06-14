@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -19,6 +20,8 @@ import org.json.JSONObject;
 
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
+
+import io.fabric.sdk.android.Fabric;
 
 public class comentarEvento extends AppCompatActivity {
   private int id;
@@ -38,6 +41,7 @@ public class comentarEvento extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_comentar_evento);
+      Fabric.with(this, new Crashlytics());
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
       getSupportActionBar().setDisplayShowHomeEnabled(true);
 

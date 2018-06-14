@@ -35,6 +35,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -45,6 +47,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import io.fabric.sdk.android.Fabric;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -84,6 +88,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Fabric.with(this, new Crashlytics());
+
+        // TODO: Move this to where you establish a user session
+        logUser();
+
 
         botonInicioSesion = findViewById(R.id.btIniciaSesion);
         botonRegistro = findViewById(R.id.btRegis);
@@ -539,5 +548,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
         }
     }
+
+    public void forceCrash(View view) {
+        throw new RuntimeException("This is a crash");
+    }
+
+    private void logUser() {
+        // TODO: Use the current user's information
+        // You can call any combination of these three methods
+        //Crashlytics.setUserIdentifier("12345");
+        //Crashlytics.setUserEmail("user@fabric.io");
+        Crashlytics.setUserName("Ventana principal");
+    }
+
 }
 

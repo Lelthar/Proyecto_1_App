@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.crashlytics.android.Crashlytics;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,6 +15,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import io.fabric.sdk.android.Fabric;
 
 public class ClaseComentarioEvento extends AppCompatActivity {
 
@@ -25,6 +29,7 @@ public class ClaseComentarioEvento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clase_comentario_evento);
+        Fabric.with(this, new Crashlytics());
         getSupportActionBar().setTitle("COMENTARIOS: ");
         lista_view_comentario = findViewById(R.id.list_view_clase_comentario);
 

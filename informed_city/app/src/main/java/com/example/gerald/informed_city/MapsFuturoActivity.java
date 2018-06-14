@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -33,6 +34,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+
+import io.fabric.sdk.android.Fabric;
 
 public class MapsFuturoActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -62,6 +65,7 @@ public class MapsFuturoActivity extends FragmentActivity implements OnMapReadyCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_futuro);
+        Fabric.with(this, new Crashlytics());
         listaEventos = new ArrayList<>();
         correo = getIntent().getExtras().getString("correo");
         //Evento evento = new Evento(1,"EVENTO NUMERO 1","Es un evento raro",5,"Incendio",9.869893f, -83.910499f);

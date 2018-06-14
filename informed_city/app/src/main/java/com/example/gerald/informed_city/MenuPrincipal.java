@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
@@ -20,6 +21,8 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
+
+import io.fabric.sdk.android.Fabric;
 
 public class MenuPrincipal extends AppCompatActivity {
 
@@ -33,6 +36,7 @@ public class MenuPrincipal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+        Fabric.with(this, new Crashlytics());
         correo = getIntent().getExtras().getString("correo");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

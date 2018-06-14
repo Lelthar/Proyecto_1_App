@@ -11,6 +11,10 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.crashlytics.android.Crashlytics;
+
+import io.fabric.sdk.android.Fabric;
+
 public class WebViewNacion extends AppCompatActivity {
     private String url;
 
@@ -20,7 +24,7 @@ public class WebViewNacion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view_nacion);
-
+        Fabric.with(this, new Crashlytics());
         Intent i=getIntent();
         int numero =Integer.valueOf( i.getExtras().getString("periodico"));
 
