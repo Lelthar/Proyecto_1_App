@@ -144,7 +144,7 @@ public class MapsFuturoActivity extends FragmentActivity implements OnMapReadyCa
                 }
 
                 LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(currentLocation).title("Usted est· ac·"));
+                mMap.addMarker(new MarkerOptions().position(currentLocation).title("Usted est√° ac√°"));
                 //mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
 
             }
@@ -184,12 +184,12 @@ public class MapsFuturoActivity extends FragmentActivity implements OnMapReadyCa
                 }
 
                 LatLng location = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(location).title("Usted est· ac·"));
+                mMap.addMarker(new MarkerOptions().position(location).title("Usted est√° ac√°"));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15.5f));
                 //mMap.animateCamera(CameraUpdateFactory.zoomIn());
             }
         }catch (Exception excepcion){
-            Toast.makeText(this, "No se cargo ubicaciÛn correctamente.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No se cargo ubicaci√≥n correctamente.", Toast.LENGTH_SHORT).show();
         }
     }
 

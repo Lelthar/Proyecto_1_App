@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrearComentario">
+
+    <RelativeLayout
+        android:layout_width="395dp"
+        android:layout_height="587dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <Button
+            android:id="@+id/btnGuardarComentarios"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp"
+            android:background="#194A43"
+            android:textColor="#ffffff"
+            android:text="Comentar" />
+
+        <EditText
+            android:id="@+id/txtNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="71dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:hint="Nombre"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/txtComentario"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true"
+            android:ems="10"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:hint="Su comentario..."
+            android:inputType="textMultiLine" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

@@ -22,7 +22,7 @@ public class WebViewNacion extends AppCompatActivity {
         setContentView(R.layout.activity_web_view_nacion);
 
         Intent i=getIntent();
-        int numero =Integer.valueOf( i.getExtras().getString("leccion"));
+        int numero =Integer.valueOf( i.getExtras().getString("periodico"));
 
 
         switch(numero){

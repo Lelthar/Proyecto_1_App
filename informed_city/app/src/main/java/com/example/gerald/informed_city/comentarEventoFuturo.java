@@ -126,12 +126,12 @@ public class comentarEventoFuturo extends AppCompatActivity {
     }
 
     /**
-     * Cuadro de di·logo para mensajes de informaciÛn.
+     * Cuadro de di√°logo para mensajes de informaci√≥n.
      * @param message
      */
     private void infoMessageDialog(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this).setIcon(R.drawable.ic_img_diag_info_icon)
-                .setMessage(message).setTitle("InformaciÛn").setPositiveButton("Aceptar",new DialogInterface.OnClickListener() {
+                .setMessage(message).setTitle("Informaci√≥n").setPositiveButton("Aceptar",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) { return; }
                 });
         AlertDialog dialog = builder.create();

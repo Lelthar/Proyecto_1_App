@@ -112,7 +112,7 @@ public class DatosEventoFuturo extends AppCompatActivity {
         } catch (ExecutionException e) {
             Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(this,"Confirmación enviada.",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"ConfirmaciÃ³n enviada.",Toast.LENGTH_SHORT).show();
     }
 
     @Override
