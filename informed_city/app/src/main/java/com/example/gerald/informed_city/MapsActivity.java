@@ -44,7 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LocationManager locationManager;
     LocationListener locationListener;
     private ArrayList<Evento> listaEventos;
-
+    private String correo;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -65,6 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        correo = getIntent().getExtras().getString("correo");
         listaEventos = new ArrayList<>();
         //Evento evento = new Evento(1,"EVENTO NUMERO 1","Es un evento raro",5,"Incendio",9.869893f, -83.910499f);
         //Evento evento1 = new Evento(1,"EVENTO NUMERO 2","Es un evento raro2",5,"Choque",9.868540f, -83.910499f);
@@ -96,6 +97,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     // intent1.putExtra("7",eventoSelec.getLongitud());
                     intent1.putExtra("8",eventoSelec.getFecha());
                     intent1.putExtra("9",eventoSelec.getCantidadReportes());
+                    intent1.putExtra("correo",correo);
                     startActivity(intent1);
                 }
 

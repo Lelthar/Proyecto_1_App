@@ -41,11 +41,13 @@ public class MenuPrincipal extends AppCompatActivity {
 
     public void btnMapaClick(View view) {
         Intent intent = new Intent(MenuPrincipal.this, MapsActivity.class);
+        intent.putExtra("correo",correo);
         startActivity(intent);
     }
 
     public void btnMapaFuturoClick(View view) {
         Intent intent = new Intent(MenuPrincipal.this, MapsFuturoActivity.class);
+        intent.putExtra("correo",correo);
         startActivity(intent);
     }
 

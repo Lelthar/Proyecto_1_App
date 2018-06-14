@@ -11,20 +11,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 public class comentarEventoFuturo extends AppCompatActivity {
     private int id;
     private String nombre;
+    private String correo;
+    private String usuario;
 
     private TextView textViewEvento;
     private EditText editTextComentario;
     private Button buttonComentar;
 
     private Conexion conexion;
+    private JSONObject datos_usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,7 @@ public class comentarEventoFuturo extends AppCompatActivity {
         id = getIntent().getExtras().getInt("id");
         nombre = getIntent().getExtras().getString("event");
         textViewEvento.setText(nombre);
+        correo = getIntent().getExtras().getString("correo");
 
         buttonComentar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,15 +57,50 @@ public class comentarEventoFuturo extends AppCompatActivity {
                 }
             }
         });
+        JSONObject json_usuario = null;
+        try {
+            json_usuario = new JSONObject(getIntent().getExtras().getString("correo"));
+            JSONObject data = json_usuario.getJSONObject("data");
+            correo = data.getString("email");
+
+            String result="";
+            Conexion user_extendeds = new Conexion();
+            //
+            try {
+                result = user_extendeds.execute("https://informedcityapp.herokuapp.com/user_extendeds.json","GET").get();
+            } catch (InterruptedException e) {
+                Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
+            } catch (ExecutionException e) {
+                Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
+            }
+
+            JSONObject json_elemento = null;
+
+            JSONArray datos = new JSONArray(result);
+            for(int i = 0; i < datos.length(); i++){
+                JSONObject elemento = datos.getJSONObject(i);
+                if(elemento.getString("email").equals(correo)){
+                    json_elemento = elemento;
+                    usuario = elemento.getString("nickname");
+                }
+            }
+            if(json_elemento != null){
+                datos_usuario = json_elemento;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void guardarComentario() throws JSONException {
         String comentario = editTextComentario.getText().toString();
         if(!comentario.isEmpty()){
-
+            Date fehc = new Date();
             JSONObject jsonParam = new JSONObject();
             jsonParam.put("comentario_texto", comentario);
             jsonParam.put("event_future_id",id);
+            jsonParam.put("fecha",fehc.toString());
+            jsonParam.put("nombre",usuario);
 
             conexion = new Conexion();
 

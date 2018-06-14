@@ -24,6 +24,7 @@ public class DatosEvento extends AppCompatActivity {
     String categoria;
     String fecha;
     int cantidadVerificacion;
+    private String correo;
 
     private Button buttonReportar;
     private Button buttonVerificar;
@@ -47,6 +48,8 @@ public class DatosEvento extends AppCompatActivity {
         categoria = getIntent().getExtras().getString("5");
         fecha = getIntent().getExtras().getString("8");
         cantidadVerificacion= getIntent().getExtras().getInt("9");
+
+        correo = getIntent().getExtras().getString("correo");
         //Toast.makeText(this,nombre+"|"+descripcion+"|"+categoria+"|"+fecha,Toast.LENGTH_SHORT).show();
 
         TextView text = findViewById(R.id.edtEvento);
@@ -88,6 +91,7 @@ public class DatosEvento extends AppCompatActivity {
                 Intent intent1 = new Intent(DatosEvento.this, comentarEvento.class);
                 intent1.putExtra("id",id);
                 intent1.putExtra("event",nombre);
+                intent1.putExtra("correo",correo);
                 startActivity(intent1);
             }
         });
