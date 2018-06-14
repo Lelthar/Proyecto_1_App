@@ -161,9 +161,9 @@ public class MenuPrincipal extends AppCompatActivity {
 
                 SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
                 String S = preferences.getString("dir", null);
-                if(S!="-1"){ // si es diferente significa que ya ha guardado antes un lugar.
+                if(S!=null){ // si es diferente significa que ya ha guardado antes un lugar.
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setMessage("¿Desea cambar a '"+S+"' como su zona de interés?")
+                    builder.setMessage("¿Desea cambiar a '"+S+"' como su zona de interés?")
                             .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     // FIRE ZE MISSILES!
