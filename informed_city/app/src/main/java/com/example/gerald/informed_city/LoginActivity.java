@@ -3,10 +3,9 @@ package com.example.gerald.informed_city;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
+import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,16 +27,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -123,16 +122,55 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mProgressView = findViewById(R.id.login_progress);
         */
 
-        /*NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.mipmap.icon)
-                .setContentTitle("Texto de Título")
-                .setContentText("Texto de Contenido")
-                .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText("Much longer text that cannot fit one line..."))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);*/
 
 
     }
+
+    public void cargarCantEventos() throws ExecutionException, InterruptedException, JSONException {
+
+        Conexion user_extendeds = new Conexion();
+        String resultado_consulta_publicaciones = user_extendeds.execute("https://informedcityapp.herokuapp.com/events.json", "GET").get();
+        JSONArray datos_publicaciones = new JSONArray(resultado_consulta_publicaciones);
+
+        int cantResult = datos_publicaciones.length();
+
+        // GUARDA LA CANTIDAD DE EVENTOS
+        SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("num", cantResult);
+        editor.apply();
+
+
+    }
+
+
+    public boolean calcularEventos() throws ExecutionException, InterruptedException, JSONException {
+        Conexion user_extendeds = new Conexion();
+        String resultado_consulta_publicaciones = user_extendeds.execute("https://informedcityapp.herokuapp.com/events.json", "GET").get();
+        JSONArray datos_publicaciones = new JSONArray(resultado_consulta_publicaciones);
+
+        int numRebibido = datos_publicaciones.length();
+
+
+        SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+        int numGuardado = preferences.getInt("num", -1);
+
+        if(numGuardado!=-1 && numGuardado!=numRebibido){
+            preferences = getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("num", numRebibido);
+            editor.apply();
+
+            return true;
+
+        }
+        else{
+            return false;
+        }
+
+
+    }
+
 
     public void inicioSesion(View view){
 
@@ -154,6 +192,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Intent intent = new Intent(LoginActivity.this,MenuPrincipal.class);
                     intent.putExtra("correo",result);
                     startActivity(intent);
+
+                    MiThread hilo = new MiThread();
+                    hilo.start();
+
                 }
             }else{
                 Toast.makeText(this,"Datos incompletos",Toast.LENGTH_LONG).show();
@@ -171,10 +213,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
 
-        /* ("MiPreferencia",Context.MODE_PRIVATE);
 
 
 
+
+
+    }
+
+
+    class MiThread extends Thread {
+        @Override
+        public void run() {
+
+        }
+    }
+
+
+
+    public void Notificar() throws InterruptedException {
         /* CREACION DE NOTIFICACION */
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -182,8 +238,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.icon)
-                .setContentTitle("¡Nuevo Evento Encontrado!")
-                .setContentText("Hay un evento importante cerca de tu región de interés. Click acá para más detalles.")
+                .setContentTitle("¡Nuevo(s) Evento(s) Encontrado(s)!")
+                .setContentText("Hay eventos importante cerca de tu región de interés. Click acá para más detalles.")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 // Set the intent that will fire when the user taps the notification
                 .setContentIntent(pendingIntent)
@@ -194,12 +250,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // notificationId is a unique int for each notification that you must define
         notificationManager.notify(123, mBuilder.build());
 
+        Thread.sleep(1000*60);
 
     }
-
-
-
-
 
 
 

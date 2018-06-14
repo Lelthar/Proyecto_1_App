@@ -189,7 +189,6 @@ public class MenuPrincipal extends AppCompatActivity {
 
                 /* OJO:Get datos de shared preferences
 
-
                 SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
                 Float f1 = preferences.getFloat("lat", (float) 0.0);
                 Float f2 = preferences.getFloat("lon", (float) 0.0);
