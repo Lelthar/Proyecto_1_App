@@ -1,6 +1,8 @@
 package com.example.gerald.informed_city;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,6 +44,13 @@ public class SignUp extends AppCompatActivity {
         String contra2Valor = contra2.getText().toString();
         if(!correoValor.equals("") && !contra1Valor.equals("") && !contra2Valor.equals("")){
             if(contra1Valor.equals(contra2Valor)){
+
+                SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("notificaciones", true);
+                editor.apply();
+
+
                 Intent intent = new Intent(SignUp.this,AjustesCuenta.class);
                 intent.putExtra("intent",1);  //Numero del intent que lo invoca.
                 intent.putExtra("correo",correoValor);

@@ -5,6 +5,6 @@
         android:title="Notificaciones" />
     <item
         android:id="@+id/Zona"
-        android:title="Zonas de interes" />
+        android:title="Mi Zona de interés" />
 
 </menu>
