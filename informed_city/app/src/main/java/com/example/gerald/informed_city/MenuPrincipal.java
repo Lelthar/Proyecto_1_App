@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -70,10 +71,23 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_puntos, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: //hago un case por si en un futuro agrego mas opciones
                 finish();
+                return true;
+            case R.id.Zona:
+
+                return true;
+            case R.id.Notificaciones:
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
