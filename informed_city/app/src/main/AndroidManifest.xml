@@ -74,6 +74,7 @@
         <activity android:name=".PublicacionComentario" />
         <activity android:name=".CrearComentario">
         </activity>
+        <activity android:name=".ClaseComentarioEvento"></activity>
     </application>
 
 </manifest>

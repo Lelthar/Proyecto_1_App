@@ -28,6 +28,7 @@ public class DatosEventoFuturo extends AppCompatActivity {
     private Button buttonVerificar;
     private Button buttonComentar;
     private Conexion conexion;
+    private Button buttonVerComentarios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class DatosEventoFuturo extends AppCompatActivity {
         buttonComentar = findViewById(R.id.btComentarF);
         buttonReportar = findViewById(R.id.btReportarF);
         buttonVerificar = findViewById(R.id.btVerificarF);
+        buttonVerComentarios = findViewById(R.id.buttonVerCF);
 
         id = getIntent().getExtras().getInt("id");
         nombre = getIntent().getExtras().getString("2");
@@ -89,6 +91,15 @@ public class DatosEventoFuturo extends AppCompatActivity {
                 intent1.putExtra("id",id);
                 intent1.putExtra("event",nombre);
                 intent1.putExtra("correo",correo);
+                startActivity(intent1);
+            }
+        });
+        buttonVerComentarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(DatosEventoFuturo.this, ClaseComentarioEvento.class);
+                intent1.putExtra("id",id);
+                intent1.putExtra("tipo",2);
                 startActivity(intent1);
             }
         });
